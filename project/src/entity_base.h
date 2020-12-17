@@ -8,20 +8,11 @@ namespace csci3081 {
 class EntityBase : public IEntity {
  public:
     virtual ~EntityBase() {}
-};
 
-class Customer : public EntityBase, public ICustomer {
- public:
-    virtual ~Customer() {}
-    
-    IEntity* AsEntity() { return this; }
-};
+    const picojson::object& GetDetails() { return details_; }
 
-class Package : public EntityBase, public IPackage {
- public:
-    virtual ~Package() {}
-    
-    IEntity* AsEntity() { return this; }
+ protected:
+    picojson::object details_;
 };
 
 }  // namespace csci3081

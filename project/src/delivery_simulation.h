@@ -11,10 +11,11 @@ class DeliverySimulation : public IDeliverySystem {
  public:
 
   void RunScript(const picojson::array& script, IEntitySystem* system) const;
-  IEntity* CreateEntity(const picojson::object& val);
+  IEntity* CreateEntity(const picojson::object& val) const;
+  void AddFactory(IEntityFactory* factory);
   void AddEntity(IEntity* entity);
   void SetGraph(const IGraph* graph);
-  void ScheduleDelivery(IPackage* package, ICustomer* dest);
+  void ScheduleDelivery(IEntity* package, IEntity* dest);
   void AddObserver(IEntityObserver* observer);
   void RemoveObserver(IEntityObserver* observer);
   const std::vector<IEntity*>& GetEntities() const;

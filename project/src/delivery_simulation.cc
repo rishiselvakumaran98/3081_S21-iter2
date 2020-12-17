@@ -3,15 +3,17 @@
 
 namespace csci3081 {
 
-IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
+IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) const {
     return NULL;
 }
+
+void DeliverySimulation::AddFactory(IEntityFactory* factory) {}
 
 void DeliverySimulation::AddEntity(IEntity* entity) {}
 
 void DeliverySimulation::SetGraph(const IGraph* graph) {}
 
-void DeliverySimulation::ScheduleDelivery(IPackage* package, ICustomer* dest) {}
+void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {}
 
 void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
 
@@ -53,9 +55,9 @@ void DeliverySimulation::RunScript(const picojson::array& script, IEntitySystem*
 				int pkg_index = static_cast<int>(params.find("pkg_index")->second.get<double>());
 				int dest_index = static_cast<int>(params.find("dest_index")->second.get<double>());
 				if (pkg_index >= 0 && pkg_index < system->GetEntities().size()) {
-					IPackage* pkg = dynamic_cast<IPackage*>(deliverySystem->GetEntities()[pkg_index]);
+					IEntity* pkg = deliverySystem->GetEntities()[pkg_index];
 					if (dest_index >= 0 && pkg_index < system->GetEntities().size()) {
-						ICustomer* cst = dynamic_cast<ICustomer*>(system->GetEntities()[dest_index]);
+						IEntity* cst = system->GetEntities()[dest_index];
 						if (pkg && cst) {
 							// TODO: move into MyDeliverySystem::scheduleDelivery
 							deliverySystem->ScheduleDelivery(pkg, cst);
