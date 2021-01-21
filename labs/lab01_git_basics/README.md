@@ -308,9 +308,9 @@ This set of commands will update your repository with any changes that are found
 ### Reading the Feedback
 
 Pushing to the server triggers the automated grading system. Soon your repo will
-contain a feedback file, letting you know if you have passed all tests of the
+contain a feedback file, letting you know if you have preliminary tests of the
 assignment. These tests will make sure you have the right directory structure,
-filenames, and that everything is behaving as indicated in the requirements.
+filenames, etc.
 
 Watch your github account via the web interface to see when the feedback file is
 ready (hit refresh to check contents). You can look at it through the web, but
@@ -322,7 +322,7 @@ merge conflicts.
 
 > ALWAYS, ALWAYS, ALWAYS perform a _pull_ before making changes to a repository. Each time you sit down to work on a lab or project iteration, perform a _pull_ of the support code  - It is an excellent idea to make a habit of this practice.
 
-If you are satisfied with the grade reported on the feedback file, then you are done. If not, you are welcome to make corrections and push any changes. Every time you push, a new feedback file will be generated for this lab to let you know how you did.
+If you are satisfied with the grade reported on the feedback file and you believe you have completed the lab correctly, then you are done. If not, you are welcome to make corrections and push any changes. Every time you push, a new feedback file will be generated for this lab to let you know how you did.
 
 THIS LAB IS COMPLETE.
 
