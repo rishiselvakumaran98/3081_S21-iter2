@@ -307,6 +307,8 @@ This set of commands will update your repository with any changes that are found
 
 ### Reading the Feedback
 
+There is a chance the feedback is not running as of 1/22/2021. We will update you once the bot is back.
+
 Pushing to the server triggers the automated grading system. Soon your repo will
 contain a feedback file, letting you know if you have preliminary tests of the
 assignment. These tests will make sure you have the right directory structure,
