@@ -160,13 +160,13 @@ $ git checkout master
 
 NOTE that we are NOT using the `-b` flag. This is used only when you want to create a new branch.
 
-Now, get the student support code by _pulling_ from the _support-code_ branch of the shared-upstream repository.
+Now, get the student support code by _pulling_ from the _support-code_ branch of the shared-upstream repository. (Note: we want this code to be pulled into our `support-code` branch. You can check which branch you are on with `git branch`. If you are not on `support-code`, switch now.)
 
 ```
 $ git pull upstream support-code --allow-unrelated-histories
 $ ls
 ```
-**_What just happened?_** You downloaded the contents of the shared-upstream branch into your local support-code branch. Listing the contents of the current directory now shows the existence of the labs/ directory. Within that directory is Lab01_Git_Basics/ and within that subdirectory are the files main.cpp, makefile, and README.md (which is the same file you're reading right now, except now there is a copy on your machine).
+**_What just happened?_** You downloaded the contents of the shared-upstream branch into your local support-code branch. Listing the contents of the current directory now shows the existence of the labs/ directory. Within that directory is Lab01_Git_Basics/ and within that subdirectory are the files sample_diff.png and README.md (which is the same file you're reading right now, except now there is a copy on your machine).
 
 #### Resolving Merge Conflicts
 
