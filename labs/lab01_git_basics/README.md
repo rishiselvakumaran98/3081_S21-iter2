@@ -285,7 +285,7 @@ systems.
     $ git commit -m "add(lab01): Adding lab01 results."
     $ git push
 
-**You likely got an error when pushing**. Something along the lines of `fatal: the current branch has no upstream`. Essentially, you have created your `support-code` branch but you haven't told git where you want the branch to go when you push it. Thankfully, the error text includes the exact command that we need to fix the issue! If you fully read the error output (which you should get in the habit of doing) you'll see the command: `git push --set-upstream support-code`. Run this now.
+**You likely got an error when pushing**. Something along the lines of `fatal: the current branch has no upstream`. Essentially, you have created your `support-code` branch but you haven't told git where you want the branch to go when you push it. Thankfully, the error text includes the exact command that we need to fix the issue! If you fully read the error output (which you should get in the habit of doing) you'll see the command: `git push --set-upstream origin support-code`. Run this now.
 
 **_What just happened?_** All of the tracked changes were staged with `git add
 -A`. You could have only staged certain files by replacing _-A_ with the
