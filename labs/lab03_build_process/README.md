@@ -265,7 +265,7 @@ We need to make a few changes in our Makefile to use these Macros. First, in the
 > Do the same with the dependency list `OBJECTS`
 ```
 $(EXEFILE): $(OBJECTS)
-	g++ $^ -o $@ $(INCLUDES)
+	g++ $^ -o $@
 ```
 
 In the `%.o` target, replace the '`-c`' flag in the current command with '`$(CXXFLAGS)`'. Notice the `-Wall` that was added. This means show all warnings, which you should always use and pay attention to. The compiler is usually trying to tell you something important that is likely to cause problems during execution!
@@ -274,7 +274,7 @@ Additionally, the '`-I`' flag will tell the compiler to look in the directories 
 
 ```
 %.o: %.cc
-	g++ $(CXXFLAGS) $^ -o $@ $(INCLUDES)
+	g++ $(CXXFLAGS) $(INCLUDES) $^ -o $@
 ```
 
 And, finally, update our clean target:
