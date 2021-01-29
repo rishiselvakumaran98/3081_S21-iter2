@@ -206,6 +206,8 @@ Once there, type the following command :
 ```
 $ bin/build-env.sh
 ```
+If you get a "bad interpreter error" when running this command, make sure to install the dos2unix command and run it on the build-env.sh file.
+you can install dos2unix using 'sudo apt-get install dos2unix'.
 
 This will run the `build-env.sh` script that is in the `bin` folder of your current directory - it may take some time to complete.
 
