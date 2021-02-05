@@ -14,7 +14,8 @@ ArrayPointerTest::ArrayPointerTest(int count) {
   // there should exist at least 4*"count_" ducks total, that are referenced
   // using the 4 arrays ducks1, ducks2, ducks3, and ducks4.
   // FILL IN the code below to create these ducks.
-  // Here again are the declarations of the duck arrays:
+  // Here again are the declarations of the duck arrays, 
+  // copied from duck.h for convenience:
   //     Duck ducks1_[kMaxDuckCount];
   //     Duck * ducks2_;
   //     Duck * ducks3_[kMaxDuckCount];
