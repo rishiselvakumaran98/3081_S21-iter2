@@ -17,8 +17,6 @@ RUN apt-get update && apt-get install -y \
     valgrind \
     git
 
-RUN pip install cpplint
-
 ARG USER_ID
 ARG GROUP_ID
 
