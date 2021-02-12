@@ -184,7 +184,7 @@ Now comment out all deletes within the ReadyForTransport and try each of the fol
 If we want to try to address the problem, what code might you add to "ReadyForTransport(&dyn_object, &local_object)" that is called from RunMemoryDemo()?
 
 - `if (*dynamic != NULL) { delete *dynamic; }`
-- `delete *dynamic;`
+- `IF (*dynamic != NULL) { delete dynamic; }`
 - `delete dynamic;`
 - It cannot be fixed.
 
