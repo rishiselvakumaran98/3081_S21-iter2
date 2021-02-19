@@ -1,6 +1,6 @@
 # Lab09 Testing with Google Test
 
-**_Note: Since we need to recompile multiple times to test, feedback may take 2-5 minutes to generate_**
+**_Note: Since we need to recompile multiple times to test, feedback may take a while to generate_**
 
 ### Preparing for the Lab
 
