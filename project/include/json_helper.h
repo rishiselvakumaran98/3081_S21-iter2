@@ -19,6 +19,17 @@ public:
    * Look at project/web/scenes/umn.json lines 5-18 for an example of how an entity is represeted in
    * a json object, or use JsonHelper::PrintEntityDetails(const picojson::object& val) to print the
    * object's contents to the terminal.
+   * 
+   * Examples:
+   * 
+   * `vector<float> position = JsonHelper::GetStdFloatVector(val, "position");`
+   * 
+   * `string type = JsonHelper::GetString(val, "type");`
+   * 
+   * ```
+   * bool contains = JsonHelper::ContainsKey(val, "battery_capacity");
+   * if (contains)...
+   * ```
    */
 
   /// Returns the key from json object obj as a json value, throws error if key doesn't exist.
