@@ -238,7 +238,9 @@ What we will be providing you with is the base code for the Package Delivery Sys
 ## 4. Kill the server by clicking the kill button or `ctrl + C`
 ###  - Please do kill the server, or it may take unexpected computer resources and you might get an email from CSE staff if you leave it running.
 
-5. Make the tests via the Makefile and run them
+5. Make the tests via the Makefile and run them with `bin/test.sh`. View the results.
+
+## Coding exercise
 
 By now you should have successfully seen the simulation running (albeit with no entities) and seen the tests execute (and fail). We will now add 
 code to the project so that we can see a drone in the simulation, and pass the google test.
