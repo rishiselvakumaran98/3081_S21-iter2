@@ -229,6 +229,8 @@ What we will be providing you with is the base code for the Package Delivery Sys
 
 ---
 
+0. Copy the additional project files from the lab directory to the project directory. `drone.h` should go to `project/include` and `drone.cc` should go to `project/src`.
+
 1. Open the **README.md** file in the top-level of your repo/shared-upstream
 
 2. Follow the instructions to run the Drone Delivery System
