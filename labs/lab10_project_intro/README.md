@@ -203,6 +203,8 @@ The directory structure for this lab is identical to that of the project.
 
 ## Generating the documentation
 
+0. Copy the additional project files from the lab directory to the project directory. `drone.h` should go to `project/include` and `drone.cc` should go to `project/src`.
+
 1. _pull_  new code into your support-code branch on your repo.
 
 2. _merge_ the new lab code into your devel/development branch.
@@ -229,7 +231,7 @@ What we will be providing you with is the base code for the Package Delivery Sys
 
 ---
 
-0. Copy the additional project files from the lab directory to the project directory. `drone.h` should go to `project/include` and `drone.cc` should go to `project/src`.
+0. (If you haven't already) Copy the additional project files from the lab directory to the project directory. `drone.h` should go to `project/include` and `drone.cc` should go to `project/src`.
 
 1. Open the **README.md** file in the top-level of your repo/shared-upstream
 
