@@ -289,6 +289,7 @@ Push your code up to your repository for feedback (don't forget to add the new f
 # Note on feedback regeneration
 
 ## To trigger a feedback regeneration for this lab, you must modify a (any) file in `labs/lab10_project_intro`
+The feedback will check your `devel` branch to ensure that your code is compiling.
 
 The feedback server looks for changes in that folder and only regenerates if something within it has changed. Since the work for this lab will be done in `repo/project/`, it will not regenerate automatically when you change files in that directory.
 
