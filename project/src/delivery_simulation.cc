@@ -1,6 +1,7 @@
 #include "delivery_simulation.h"
 #include "entity_base.h"
 #include "json_helper.h"
+#include "drone.h"
 
 namespace csci3081 {
 
@@ -9,12 +10,20 @@ DeliverySimulation::DeliverySimulation() {}
 DeliverySimulation::~DeliverySimulation() {}
 
 IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
-    return NULL;
+  //TODO for lab10: replace the ?????'s with the appropriate values
+  if (JsonHelper::GetString(val, "????") == "drone") {
+    std::vector<float> position = JsonHelper::GetStdFloatVector(val, "????????");
+    std::vector<float> direction = JsonHelper::GetStdFloatVector(val, "????????");
+    return new Drone(????, ????, ????);
+  }
+  return NULL;
 }
 
 void DeliverySimulation::AddFactory(IEntityFactory* factory) {}
 
-void DeliverySimulation::AddEntity(IEntity* entity) {}
+void DeliverySimulation::AddEntity(IEntity* entity) { 
+  //TODO for lab10: One line of code
+}
 
 void DeliverySimulation::SetGraph(const IGraph* graph) {}
 
