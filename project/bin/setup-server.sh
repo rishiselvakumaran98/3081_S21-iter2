@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#./bin/server.sh /home/dtorban/csci3081/server 8081 dtorban 03 kh1250
+#./bin/setup-server.sh /home/dtorban/csci3081/server dtorban 03 kh1250
 
 ROOTDIR=`git rev-parse --show-toplevel`
 
