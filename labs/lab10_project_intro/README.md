@@ -306,7 +306,7 @@ I would recommend that you just make a small change to the this file (e.g. add a
     - Recommended commands: @brief, @param, @return
     - Add comments that would be useful to a new programmer joining you in this project. Things like: a few words on HOW the function works, WHEN the function is/should be called, possible modifications for the function, etc.
   - Write self-documenting C++ code according to the guidelines specified in chapters 11 and 32 in McConnell Code Complete.
-  - Make sure your code is Google Style compliant using cpplint
+  - Make sure your code is either Google Style compliant or use the style guidelins in McConnell. Just be consistent throughout the project.
 
 ### Project Documentation:
   - For project submissions, you are required to do all the documentation mentioned above to receive full credit on your submission.
