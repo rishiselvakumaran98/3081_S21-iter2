@@ -1,5 +1,7 @@
 # Iteration One: Proof of Concept/Protoype -- Package Delivery System
 
+## Iteration 1 - VERSION 2, March 3rd -- Changed IEntity.h to Entity.h 
+
 ## Iteration 1 - VERSION 1, February 19th  - **NOTE, THE REQUIREMENTS IN THIS DOCUMENT ARE SUBJECT TO CHANGE. THERE WILL BE A CANVAS ANNOUNCEMENT WHEN THERE IS A CHANGE TO THIS DOCUMENT.**<hr>
 
 | Date | Item | Description of Verification and Validation of Deliverable(s) |
@@ -146,7 +148,7 @@ The drone should have the following functionality:
 
 1. Drones should be able to move from point A to point B at a constant speed.  You can use the following formula for calculating movement for the prototype:
 >Pseudocode: position = position + direction \*speed \*dt<br>
->Note: position and direction are stored in the IEntity class interface in IEntity.h.
+>Note: position and direction are stored in the IEntity class interface in Entity.h.
 
 2. When a package is scheduled for delivery, a drone should navigate to the package, pick up the package, and bring it to its destination.  The drone should follow the route from the source to the destination based on a beeline path or one of our default routes. The drone should never exceed the constant speed for this iteration.
 
