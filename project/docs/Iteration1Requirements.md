@@ -1,5 +1,7 @@
 # Iteration One: Proof of Concept/Protoype -- Package Delivery System
 
+## Iteration 1 - VERSION 3, March 4th -- Clarified the overall goal of the simulation in the introduction. 
+
 ## Iteration 1 - VERSION 2, March 3rd -- Changed IEntity.h to Entity.h 
 
 ## Iteration 1 - VERSION 1, February 19th  - **NOTE, THE REQUIREMENTS IN THIS DOCUMENT ARE SUBJECT TO CHANGE. THERE WILL BE A CANVAS ANNOUNCEMENT WHEN THERE IS A CHANGE TO THIS DOCUMENT.**<hr>
@@ -12,7 +14,7 @@
 
 ## Project Introduction
 
-For this project you will be creating a package delivery simulation. Amazon, FedEx, UPS, and other delivery services companies are developing automated delivery systems using drones, robots, and self-driving trucks. For this iteration of the project you will be creating just the drone package delivery system. In this process you will have to create the following classes: Customer, Drone, Package, Vector3D, Vector2D, and a Battery class. To assist you in completing your solution we have provided you support code so the simulation runs in a web browser, firefox, chrome, etc. 
+For this project you will be creating a package delivery simulation. Amazon, FedEx, UPS, and other delivery services companies are developing automated delivery systems using drones, robots, and self-driving trucks. For this iteration of the project you will be creating just the drone package delivery system. **Your overall goal is for the drone to pick up the package and deliver it to the customer.** In this process you will have to create the following classes: Customer, Drone, Package, Vector3D, Vector2D, and a Battery class. To assist you in completing your solution we have provided you support code so the simulation runs in a web browser, firefox, chrome, etc. 
 
 As part of the solution you will be using the facade design pattern (https://www.dofactory.com/net/facade-design-pattern) where the complexity of the system is hidden behind an interface. We will be giving you a Doxygen generated html file containing the documentation of all the classes being implemented behind the facade. **Do not modify the class IDeliverySystem or IEntity**
 
@@ -42,6 +44,7 @@ For this iteration you will be submitting the following deliverables  based upon
 
 5. Correct and update the first UML diagram you delivered to include changes to your code including your factory class(es) and their relationships to the classes that already existed in the simulation. 
 
+***6. The drone delivers a package to the customer.***
 
 ## Deliverables and Submission Process
 
@@ -73,7 +76,9 @@ In this iteration, you do the following development including:
 
 Teaching staff (Undergraduate TA's, Graduate TA's, and Instructors)  will also be working diligently to provide the structure and support for development, testing, and documentation. Automation in unit testing, style compliance, in-house github testing, and documentation will make this an easier process, however it means that you will have to develop within the constraints of these systems. **Often there is a learning curve and a lot of systems trouble-shooting to get it all working, so start early!**
 
-In the first iteration, you will be adding classes to our support code to enhance the simulation to by designing and implementing the items listed above. Since this a proof of concept, a single drone to deliver a single package to a customer. The simulation is using three.js to create a 3D model of the University of Minnesota campus. Later we will be adding more scenes, drones, packages, etc. Therefore your solution to iteration one should be robust. The drone has to detect the package, pick up the package, and deliver it to the customer. Once the package is delivered it should be removed from the simulation. Iterations 2 and 3 will include more changes, enhancements/extensions, and put the core functionality to greater use. 
+In the first iteration, you will be adding classes to our support code to enhance the simulation by designing and implementing the items listed above. Since this a proof of concept, **your simulation should use a single drone to deliver a single package to a customer.** The simulation is using three.js to create a 3D model of the University of Minnesota campus. Later we will be adding more scenes, drones, packages, etc. Therefore your solution to iteration one should be robust. **The drone has to detect the package, pick up the package, and deliver it to the customer. Once the package is delivered it should be removed from the simulation.** 
+
+Iterations 2 and 3 will include more changes, enhancements/extensions, and put the core functionality to greater use. 
 
 ### Functional Requirements
 
