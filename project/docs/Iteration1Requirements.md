@@ -1,5 +1,7 @@
 # Iteration One: Proof of Concept/Protoype -- Package Delivery System
 
+## Iteration 1 - VERSION 4, March 8th -- Relaxed unit testing requirements from "all public methods" to "all public methods which do not overly rely on external classes".
+
 ## Iteration 1 - VERSION 3, March 4th -- Clarified the overall goal of the simulation in the introduction. 
 
 ## Iteration 1 - VERSION 2, March 3rd -- Changed IEntity.h to Entity.h 
@@ -304,7 +306,7 @@ TAs will inspect code for good naming conventions, good code organization, and i
 
 #### Preliminary Testing Submission ( 10% )  **UPDATE**
 
-In the week prior to the due date of the completed iteration, we will confirm that you have submitted work for Preliminary Turn-in #2. You must include tests for **all** public methods in the Drone, Package, Customer, Vector3D, Vector2D, and Battery classes. These should include tests for all Boolean valued functions and constructors to receive full points for the preliminary submission. There will be no manual inspection of the code at this point -- it is strictly a test for completed functionality and testing. We will ensure that your tests are effective using automatic means, similar to the Testing lab. There will be transparency in this process in that you will know what functionality will be tested, and you will see the results. Points earned at this stage are independent of the 40% points for the final submission.
+In the week prior to the due date of the completed iteration, we will confirm that you have submitted work for Preliminary Turn-in #2. You must include tests for ~~all~~ all public methods *which do not overly rely on external classes* in the Drone, Package, Customer, Vector3D, Vector2D, and Battery classes. These should include tests for all Boolean valued functions and constructors to receive full points for the preliminary submission. There will be no manual inspection of the code at this point -- it is strictly a test for completed functionality and testing. We will ensure that your tests are effective using automatic means, similar to the Testing lab. There will be transparency in this process in that you will know what functionality will be tested, and you will see the results. Points earned at this stage are independent of the 40% points for the final submission.
 
 Your google-test unit tests do not have to be google style compliant, and you do not need to follow the version control  development process specified in lab 10 to design and implement your tests. Your google tests should be in the **development branch** in your repository on github.umn.edu  by the end of the day Friday,  March 12. Remember to GIT ADD, GIT COMMIT and GIT PUSH your tests before the deadline!!!!
 
