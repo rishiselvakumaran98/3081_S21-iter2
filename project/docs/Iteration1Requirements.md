@@ -244,7 +244,7 @@ Doxygen automatically generates documentation of class and code structure when y
 
 - fully documented classes and methods.
 
-- a discussion of the abstract factory vs. concrete factory vs. the composite factory.  The discussion should clearly describe each possible implementation (use a UML diagram), and discuss at least one pro and one con of implementing each of the alternatives. Include in your discussion the advantages and disadvantages of each type of factory.
+- ***a discussion of the abstract factory vs. concrete factory vs. the composite factory.  The discussion should clearly describe each possible implementation (use a UML diagram), and discuss at least one pro and one con of implementing each of the alternatives. Include in your discussion the advantages and disadvantages of each type of factory.***
 
 - The /html directory should *not* be in your repo in github.umn.edu - nor should your build directory, executable files, or object files.
 
