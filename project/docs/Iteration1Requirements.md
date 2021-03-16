@@ -322,7 +322,7 @@ AFTER reading this document, if you have not done so, complete lab 9. Lab 10 wil
 
 <hr>
 
-##Important notes to remember
+## Important notes to remember
 
 >Your software is a reflection of your understanding of the requirements as specified in this document. If you do not understand any portion of the requirements or you think that the requirements are underspecified, it is your responsibility to get clarification from the instructor or a TA. Please read this document carefully and review it prior to turning in your iteration for assessment.
 
