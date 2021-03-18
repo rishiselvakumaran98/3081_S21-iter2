@@ -44,21 +44,21 @@
 
 ## Getting Started using SSH on CSE Lab machines
 
-1. Initial Setup of remote web server (full copy)
-
+1. Run the ssh environment
     ```bash
-    #Example: ./project/bin/setup-server.sh dtorban 05
-    ./project/bin/setup-server.sh <username> <computer_number>
+    # Run the ssh environment
+    # Example: ./bin/ssh-env.sh <x500> <port> <computer num>
+    ./bin/ssh-env.sh myx500 8081 05
     ```
 
-2. Run remote web server (only copies src directory)
+2. Build and run the simulation
 
     ```bash
-    #Example: ./project/bin/server.sh dtorban 05 8081
-    ./project/bin/server.sh <username> <computer_number> <port>
+    cd /path/to/project
+    make -j
+    ./bin/run.sh
     ```
-
-    
+  
 5. Open up Firefox and browse to http://127.0.0.1:8081/
 
 ## Getting Started with VOLE-3D or VOLE
