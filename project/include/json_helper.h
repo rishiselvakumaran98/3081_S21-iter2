@@ -92,9 +92,31 @@ public:
 
   /********************** Creation functions **************************/
   
+  /// Create a new json object for sending notifications
+  static picojson::object CreateJsonNotification() {
+    picojson::object obj;
+    AddStringToJsonObject(obj, "type", "notifiy");
+    return obj;
+  }
+
   /// Returns a new json object.
   static picojson::object CreateJsonObject() {
     return picojson::object();
+  }
+
+  /// Converts given obj to an equivalent picojson::value
+  static picojson::value ConvertPicojsonObectToValue(picojson::object& obj) {
+    return picojson::value(obj);
+  }
+
+  /// Adds a picojson value to the specifiied key in a json object
+  static void AddValueToJsonObject(picojson::object& obj, std::string key, picojson::value val) {
+    obj[key] = val;
+  }
+
+  /// Adds the latter picojson object to the former object as a value under the key 'key'
+  static void AddObjectToJsonObject(picojson::object& obj, std::string key, picojson::object& val) {
+    obj[key] = JsonHelper::ConvertPicojsonObectToValue(val);
   }
 
   /// Adds a string value named key to a json object.
@@ -122,7 +144,14 @@ public:
     return arr;
   }
 
-  static picojson::value EncodeArray(const vector<vector<float>> arr) {
+  /// Given a picojson object, key, and vector<vector<float>> array, adds the array as the value for key in obj
+  static void AddStdVectorVectorFloatToJsonObject(picojson::object& obj, 
+                                                 std::string key, std::vector<std::vector<float>> array) {
+    obj[key] = EncodeArray(array);
+  }
+
+  /// Given a vector<vector<float>> array, returns the array as a picojson::value
+  static picojson::value EncodeArray(const vector<vector<float>> arr) { //todo discard some precision by converting to strings?
     vector<picojson::value> result;
     for(vector<float> subarr : arr) {
       vector<picojson::value> subarr_encode;
