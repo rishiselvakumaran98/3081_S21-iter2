@@ -95,7 +95,7 @@ public:
   /// Create a new json object for sending notifications
   static picojson::object CreateJsonNotification() {
     picojson::object obj;
-    AddStringToJsonObject(obj, "type", "notifiy");
+    AddStringToJsonObject(obj, "type", "notify");
     return obj;
   }
 
@@ -105,7 +105,7 @@ public:
   }
 
   /// Converts given obj to an equivalent picojson::value
-  static picojson::value ConvertPicojsonObectToValue(picojson::object& obj) {
+  static picojson::value ConvertPicojsonObjectToValue(picojson::object& obj) {
     return picojson::value(obj);
   }
 
