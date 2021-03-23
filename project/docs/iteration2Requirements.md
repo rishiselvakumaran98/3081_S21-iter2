@@ -1,11 +1,13 @@
 # Iteration Two: Enhancing and Extending the Package Delivery System
 
+## Iteration 2 - VERSION 2, March 23rd  - **Changed the due date of the final deliverable from April 12th to April 19th**<hr>
+
 ## Iteration 2 - VERSION 1, March 22nd  - **NOTE, THE REQUIREMENTS IN THIS DOCUMENT ARE SUBJECT TO CHANGE. THERE WILL BE A CANVAS ANNOUNCEMENT WHEN THERE IS A CHANGE TO THIS DOCUMENT.**<hr>
 
 | Date | Item | Description of Verification and Validation of Deliverable(s) |
 |:----:|:-----|:------------|
 | FRI, April 2nd, 11:55pm | Robot also delivers packages and implement the Observer Pattern for observing Packages, Drones, and Robots. Fix your GoogleTests | inspection |
-| Mon, April 12 , 11:55pm | Incorporate a strategy for choosing different routes (smart, beeline, parabolic) for the drone and when the battery is depleted the drone or robot will drop the package and become idle. The package must be rescheduled for delivery  | Automated tests and inspection |
+| Mon, April 19 , 11:55pm | Incorporate a strategy for choosing different routes (smart, beeline, parabolic) for the drone and when the battery is depleted the drone or robot will drop the package and become idle. The package must be rescheduled for delivery  | Automated tests and inspection |
 
 In the previous iteration you showed that a drone can deliver a package to a customer either using a predefined route or a beeline route. In this iteration we will be enhancing the functionality of the previous iteration to include a robot that also delivers packages, report when a package is scheduled, in route, and when it has been delivered. Add additional reporting features for the robot and drone to report when they are moving or idle. You will also implement a strategy for routes the drone will take either smart, beeline, or parabolic. (All three routes will be tested). Add the functionality of determining if the battery of either the robot or the drone is depleted the package will be dropped, rescheduled for delivery, and the robot or drone will be idle.
 
@@ -23,7 +25,7 @@ You will work with your team to complete this iteration. A lab will be posted de
 
 3. Fix your google tests from the first iteration based upon the feedback received. 
 
-### Final Deliverable --- Due Monday April 12th by 11:59 PM
+### Final Deliverable --- Due Monday April 19th by 11:59 PM
 
 1. The drone will be choosing a route using one of three routes: shortest path algorithm, beeline, or parabolic based upon differing sets of criteria, for example: Time of day and/or route information, etc. Further details can be found in the section Deliverables and Submission Process.
 The strategy pattern may be useful for designing and implementing this capability. **See: [Strategy Pattern](https://www.geeksforgeeks.org/strategy-pattern-set-1/)** for an overview of the strategy pattern.  See the following links for examples of implementation of the strategy patten in java and C++:   
