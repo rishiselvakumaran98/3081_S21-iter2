@@ -116,7 +116,7 @@ public:
 
   /// Adds the latter picojson object to the former object as a value under the key 'key'
   static void AddObjectToJsonObject(picojson::object& obj, std::string key, picojson::object& val) {
-    obj[key] = JsonHelper::ConvertPicojsonObectToValue(val);
+    obj[key] = JsonHelper::ConvertPicojsonObjectToValue(val);
   }
 
   /// Adds a string value named key to a json object.
