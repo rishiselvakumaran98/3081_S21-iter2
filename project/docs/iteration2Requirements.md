@@ -155,7 +155,7 @@ Drones and robots will have the following realistic limitation of battery life (
 
   * If a 'battery_capacity' key is present in the `details` object passed to `CreateEntity()`, the robot/drone should be initialized with a battery of max capacity equal to the value of the 'battery_capacity' key (which will be a floating point number).
   * When either are moving the battery life starts to drain. Once the battery life is gone, the robot or the drone will switch to idle mode and no longer move. When this occurs the package will be dropped and should be rescheduled. This event needs to be reported to the observer that the package has been scheduled again according to priority 2 requirements. In addition, the robot or drone also need to report to the observer a change in state.
-  * If a package is dropped a new drone should be allocated to complete the delivery.
+  * If a package is dropped a new drone/robot should be allocated to complete the delivery.
   * Drones/Robots cannot exceed their maximum speed.
   * When Drones/Robots enter idle mode when not moving and the battery does not drain since they are not moving.
 
