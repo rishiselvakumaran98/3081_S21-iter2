@@ -1,5 +1,7 @@
 # Scene Descriptions
 
+## Note: Recharge stations are not required for iteration 2
+
 ## umn.json
 
 Identical to the umn.json provided for iteration 1. It has one customer, package, and drone.
