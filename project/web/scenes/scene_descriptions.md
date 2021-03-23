@@ -8,7 +8,7 @@ Identical to the umn.json provided for iteration 1. It has one customer, package
 
 ## recharge.json
 
-Identical to umn.json, with the addition of an entity of type "recharge_station" near the customer.
+Identical to umn.json, with the addition of an entity of type "recharge_station" near the customer. This scene does not need to work for iteration 2.
 
 ## robot.json
 
