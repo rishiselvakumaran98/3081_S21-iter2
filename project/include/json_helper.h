@@ -30,6 +30,17 @@ public:
    * bool contains = JsonHelper::ContainsKey(val, "battery_capacity");
    * if (contains)...
    * ```
+   *
+   * ```
+   * std::vector<std::vector<float>> path = ...
+   * ...
+   * picojson::object notification_builder = JsonHelper::CreateJsonNotification();
+   * JsonHelper::AddStdVectorVectorFloatToObject(notification_builder, "path", path);
+   * ...
+   * picojson::value notification_to_send = JsonHelper::ConvertJsonObjectToValue(notification_builder);
+   * SendToObservers(notification_to_send);
+   * ...
+   * ```
    */
 
   /// Returns the key from json object obj as a json value, throws error if key doesn't exist.
