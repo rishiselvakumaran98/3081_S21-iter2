@@ -50,6 +50,6 @@ This scene is the same as the above, but the two drones are swapped. Your simula
 
 This scene has one customer, six packages, and a robot and drone. The robot and drone should each deliver at least one package to the customer, and all the packages should be delivered customer by the end.
 
-## most_features.json
+## all_features.json
 
-This scene has two customers, 4 packages, two drones, two robots, and a recharge station. One of the drones and one of the robots are at medium battery, and might die before the end of the simulation.
+This scene has two customers, 4 packages, two drones, two robots, and a recharge station. One of the drones and one of the robots are at medium battery, and might die before the end of the simulation. The simulation doesn't need to implement the recharge station.
