@@ -1,5 +1,7 @@
 # Iteration Two: Enhancing and Extending the Package Delivery System
 
+## Iteration 2 - VERSION 3, March 23rd  - Adding clarification that simulations should be capable of multiple-package simulations.
+
 ## Iteration 2 - VERSION 2, March 23rd  - **Changed the due date of the final deliverable from April 12th to April 19th**<hr>
 
 ## Iteration 2 - VERSION 1, March 22nd  - **NOTE, THE REQUIREMENTS IN THIS DOCUMENT ARE SUBJECT TO CHANGE. THERE WILL BE A CANVAS ANNOUNCEMENT WHEN THERE IS A CHANGE TO THIS DOCUMENT.**<hr>
@@ -87,7 +89,19 @@ Below is a prioritized list of enhancements to our support code to make the simu
 
 #### Priority Level 2:
 
-1. **Observe Packages**
+1. **Allow for multiple packages to be delivered in a simulation**
+
+ * Having only one package scheduled and delivered in a simulation is very constricting. We would like simulations to be capable of delivering multiple packages, utilizing multiple robots/drones.
+ 
+ * Scheduling logic is open-ended and up to you to decide. You can determine which Drone/Robot delivers which package however you want. One simple metric could be choosing whichever Drone/Robot is closest to the package and is not currently making a delivery.
+ 
+ * Drones/Robots should only be capable of delivering one package at a time.
+ 
+ * If a Package is scheduled for delivery at a time when no Drone/Robot is available, the Package should be delivered when one of the Drones/Robots finishing making their delivery.
+ 
+ * Remember to run a specific scene with `./bin/run.sh scenes/<name_of_scene_file>`, there are a few scene files which include multiple packages so you can debug this feature of your simulation. See the file `project/web/scenes/scene_descriptions.md` for a description of each scene file.
+
+2. **Observe Packages**
 
  * Observers will be added to your simulation through the `AddObserver` method. Any Observers added should be notified by calling their `OnEvent()` method when the described events occur.
  
@@ -110,7 +124,7 @@ Below is a prioritized list of enhancements to our support code to make the simu
 
   * You should be able to remove any observers from the simulation with the removeObserver(...) method.
 
-2. **Observe Drone/Robot**
+3. **Observe Drone/Robot**
 
  * We need to be notified of all drone/robot path changes so we can analyze and keep track of the drones/robots, as well as draw the routes of drones/robots in the simulation.
 
