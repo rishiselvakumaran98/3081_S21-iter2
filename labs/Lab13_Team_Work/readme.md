@@ -132,7 +132,11 @@ We would normally suggest that you delete the branch, but then we won't be able 
 
 # IMPORTANT: a note on academic honesty
 
-Only **one** person should be assigned to each `priority` task. Completing work on a `priority` task that you are not assigned to without documenting it is like doing someone else's homework. However we want you to still be able to work together, since peer programming is a very useful skill. Therefore when you work with someone on a `priority` task, that work should be documented with the following format:
+Only **one** person should be assigned to each `priority` task. 
+
+***Clarification: Assign a single person to be the lead on a priority. This person would be responsible for getting the priority done for your team. This does not mean your other team members cannot assist in the solution.***
+
+Completing work on a `priority` task that you are not assigned to without documenting it is like doing someone else's homework. However we want you to still be able to work together, since peer programming is a very useful skill. Therefore when you work with someone on a `priority` task, that work should be documented with the following format:
 
 Create a file named: `<priority-task-name>-groupwork.txt`
 
