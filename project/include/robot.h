@@ -83,12 +83,12 @@ distance_traveled = 0;
    * @brief this function checks if the Robot is within a certain range for performing and action.
    * @param v Vector3D for the position to be checked if it is within the range 
    */
-  bool Within_range(Vector3D v);
+  bool Within_range(Vector2D v);
 
   /**
    * @brief This function returns the current position of the target in the currentRout vector. Used for either updating the Robot's position or calculating routs.
    */
-  Vector3D GetTargetPosition();
+  Vector2D GetTargetPosition();
 
 
   /**
