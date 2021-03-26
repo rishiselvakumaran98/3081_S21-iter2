@@ -5,32 +5,54 @@
 
 namespace csci3081 {
 
-DeliverySimulation::DeliverySimulation() {}
+DeliverySimulation::DeliverySimulation() {
+	comp_fact = CompositeFactory();
+
+	AddFactory(new DroneFactory());
+	AddFactory(new PackageFactory());
+	AddFactory(new CustomerFactory());
+}
 
 DeliverySimulation::~DeliverySimulation() {}
 
 IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
-  //TODO for lab10: replace the ?????'s with the appropriate values,
-  //  then uncomment the section of code
-  /*
-  if (JsonHelper::GetString(val, "????") == "drone") {
-    std::vector<float> position = JsonHelper::GetStdFloatVector(val, "????????");
-    std::vector<float> direction = JsonHelper::GetStdFloatVector(val, "????????");
-    return new Drone(????, ????, ????);
-  }
-  */
-  return NULL;
+		IEntity* temp =  comp_fact.CreateEntity(val);
+		if (temp != nullptr) {
+			EntityBase* tempBase = dynamic_cast<EntityBase*>(temp);
+			tempBase->SetId(NewId());
+			return tempBase;
+		}//close if
+		return nullptr;
 }
 
-void DeliverySimulation::AddFactory(IEntityFactory* factory) {}
+void DeliverySimulation::AddFactory(IEntityFactory* factory) {
+	comp_fact.AddFactory(factory);
+}
 
 void DeliverySimulation::AddEntity(IEntity* entity) { 
-  //TODO for lab10: One line of code
+	if (dynamic_cast<Drone*>(entity)) {
+		std::cout << "Added Drone" << std::endl;
+	} else if (dynamic_cast<Package*>(entity)) {
+		std::cout << "Added Package" << std::endl;
+	} else if (dynamic_cast<Customer*>(entity)) {
+		std::cout << "Added Customer" << std::endl;
+	}
+	entities_.push_back(entity);
 }
 
-void DeliverySimulation::SetGraph(const IGraph* graph) {}
+void DeliverySimulation::SetGraph(const IGraph* graph) {
+	graph_ = graph;
+}
 
-void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {}
+void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
+	for (int i = 0; i < entities_.size(); i++) {
+		const picojson::object& temp = entities_[i]->GetDetails();
+		if (JsonHelper::GetString(temp, "type") == "drone") {
+			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
+			nextDrone->Scheduled_drone(package, dest, graph_);
+		}
+	}//close for loop
+}//close function
 
 void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
 
@@ -38,8 +60,15 @@ void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
 
 const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { return entities_; }
 
-void DeliverySimulation::Update(float dt) {}
-
+void DeliverySimulation::Update(float dt) {
+	for (int i = 0; i < entities_.size(); i++) {
+		const picojson::object& temp = entities_[i]->GetDetails();
+		if (JsonHelper::GetString(temp, "type") == "drone") {
+			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
+			nextDrone->update_drone_movement(dt);
+		} //close type check for entity
+	} //close for loop
+} //end function
 
 // DO NOT MODIFY THE FOLLOWING UNLESS YOU REALLY KNOW WHAT YOU ARE DOING
 void DeliverySimulation::RunScript(const picojson::array& script, IEntitySystem* system) const {
