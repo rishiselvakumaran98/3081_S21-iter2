@@ -1,5 +1,7 @@
 # Iteration Two: Enhancing and Extending the Package Delivery System
 
+## Iteration 2 - VERSION 4, March 26th  - Adding clarification regarding path passed to observers and robot entity.
+
 ## Iteration 2 - VERSION 3, March 23rd  - Adding clarification that simulations should be capable of multiple-package simulations.
 
 ## Iteration 2 - VERSION 2, March 23rd  - **Changed the due date of the final deliverable from April 12th to April 19th**<hr>
@@ -85,7 +87,7 @@ Below is a prioritized list of enhancements to our support code to make the simu
 
 1. Fix your Google Tests from Iteration 1.
 
-2. Create a Robot class that can deliver packages to a customer. The Robot cannot fly, therefore it will be grounded and will essentially have the same functionality of the drone class. The Robot class should use the "smart" route method, which uses the IGraph::GetPath() function.
+2. Create a Robot class that can deliver packages to a customer. The Robot cannot fly, therefore it will be grounded and will essentially have the same functionality of the drone class. The Robot class should use the "smart" route method, which uses the IGraph::GetPath() function. The Robot entity will be specified in CreateEntity when the json contains "robot" as the value for the "type" key.
 
 #### Priority Level 2:
 
@@ -127,6 +129,8 @@ Below is a prioritized list of enhancements to our support code to make the simu
 3. **Observe Drone/Robot**
 
  * We need to be notified of all drone/robot path changes so we can analyze and keep track of the drones/robots, as well as draw the routes of drones/robots in the simulation.
+ 
+ * When a Drone/Robot begins moving, it should pass the path of its current destination to all observers. (If the Drone/Robot is moving to a Package, it should pass the path to the Package, if it is moving to a Customer, it should pass the path to the Customer).
 
  * When a drone/robot stops moving or starts moving all observers associated with the simulation should have their *OnEvent(...) method* called. This method is part of the front-end code, but you need to pass the correct information to in regards to the observer in the following situations:
 
