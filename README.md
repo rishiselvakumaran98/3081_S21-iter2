@@ -11,6 +11,7 @@
 
 ## Getting Started with Docker
 
+
 1. Build docker image
 
     ```bash
