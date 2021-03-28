@@ -68,7 +68,7 @@ In this iteration, you do the following development including:
 - adding to the simulation class structure 
 - ensuring coding style compliance
 - augmenting the design discussion in your doxygen mainpage to include a discussion on your design and implementation of the routes used by the drone.
-- augmenting the design discussion in your doxygen mainpage to include a discussion to include a section on your teamwork for this iteration
+- augmenting the design discussion in your doxygen mainpage to include a section on your teamwork for this iteration
 - modify/update your iteration UML design documentation to include the classes and methods you add or refactor in iteration 2.
 - using Doxygen to document and generate documentation.
 - Use git, and produce self-documenting code (i.e. good organization and naming conventions). 
