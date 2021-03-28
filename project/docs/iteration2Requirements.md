@@ -115,7 +115,7 @@ Below is a prioritized list of enhancements to our support code to make the simu
  
  * We have already made observers for you: *the WebSceneViewer and the EntityConsoleLogger*.  The teams task is to implement the subject part of the Observer pattern, your team does not need to implement any Observers.
 
- * When a package has been scheduled, picked up, or delivered, all observers associated with the simulation should have their *OnEvent(...) method* called. This method is part of the front-end code, but you need to pass the correct information to it regards to the observer in the following situations:
+ * When a package has been scheduled, picked up, or delivered, all observers associated with the simulation should have their *OnEvent(...) method* called. This method is part of the front-end code, but you need to pass the correct information to it in regards to the observer in the following situations:
 
   * **Package scheduled:**</br>
  > observer->OnEvent({“type”: “notify”, “value”: “scheduled” }, package)
