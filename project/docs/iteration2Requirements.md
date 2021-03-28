@@ -29,7 +29,7 @@ You will work with your team to complete this iteration. A lab will be posted de
 
 2. Implement the observer pattern to report when a package is scheduled, delivered, or enroute to all of the observers. In addition, report when either entity the drone or the robot are moving or idle. Further details can be found in the section Deliverables and Submission Process. **See: [Observer Pattern]( https://www.geeksforgeeks.org/observer-pattern-set-1-introduction/) and also chapter two in the heads first design book** for an overview of the observer pattern. 
 
-**3. The simulation must show the robot/drone can deliver multiple packages to multiple customers.**
+3. **The simulation must show the robot/drone can deliver multiple packages to multiple customers.**
 
 4. Fix your google tests from the first iteration based upon the feedback received. 
 
