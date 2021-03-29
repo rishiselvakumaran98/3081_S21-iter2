@@ -1,4 +1,4 @@
-#ifndef JSON_HELPER_H_
+release#ifndef JSON_HELPER_H_
 #define JSON_HELPER_H_
 
 #include <iostream>
