@@ -1,0 +1,9 @@
+#include "ISubject.h"
+
+namespace csci3081 {
+
+
+bool AddObserver(IEntityObserver* observer_to_be_added) {
+
+}
+}//end of namespace 

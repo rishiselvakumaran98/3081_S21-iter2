@@ -10,12 +10,13 @@
 #include "entity_base.h"
 #include "Vector3D.h"
 #include "Customer.h"
-
+#include "ISubject.h"
 namespace csci3081 {
 	/**
 	 * @brief class responsible for the generation of packages.
 	 */
-class Package : public csci3081::EntityBase {
+class Package : public csci3081::EntityBase, public ISubject  {
+
 public:
 	/**
 	 * @brief Default constructor for package objects. Besides the base constructor from entity base, this constructor also sets up the weight, person_to_receive and destination arguments that are particular to the package.
@@ -63,6 +64,10 @@ void SetCustomer(Customer* p) { person_to_receive = p;}
  * @brief returns the pointer to the Customer object that is the person_to_receive field.
  */
 Customer* GetRecipient() {return person_to_receive;}
+
+void OnSchedule();
+void OnPickUp();
+void OnDropOff();
 
 
 private:
