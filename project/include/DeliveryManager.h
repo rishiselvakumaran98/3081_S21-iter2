@@ -2,7 +2,7 @@
 #define DELIVERY_MANAGER_H_
 
 #include <EntityProject/facade/delivery_system.h>
-#include "Drone.h"
+#include "drone.h"
 #include "Package.h"
 namespace csci3081 {
 class DeliveryManager {
@@ -12,3 +12,4 @@ class DeliveryManager {
 		
 }; //close class 
 } //close namespace 
+#endif

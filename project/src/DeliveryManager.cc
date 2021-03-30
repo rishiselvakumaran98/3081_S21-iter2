@@ -5,9 +5,9 @@ namespace csci3081 {
 
 void DeliveryManager::schedule_mover(Drone* nextDrone, IEntity* package, IEntity* dest, const IGraph* graph_) {
 	if (nextDrone->GetPackage() == nullptr) {
-		nextDrone->SetDroneToPack( graph_->GetPath(GetPosition(), package->GetPosition() ) );
+		nextDrone->SetDroneToPack( graph_->GetPath(nextDrone->GetPosition(), package->GetPosition() ) );
 		nextDrone->SetPackage(dynamic_cast<Package*>(package));
-		nextDrone->("pack");
+		nextDrone->SetCurrRout("pack");
 		nextDrone->SetPackToCustomer ( graph_->GetPath(package->GetPosition(), dest->GetPosition() ));
 		Package* pack = dynamic_cast<Package*>(package);
 		pack->SetCustomer(dynamic_cast<Customer*>(dest));
@@ -31,7 +31,7 @@ void DeliveryManager::update_movement(Drone* nextDrone, float dt) {
 			v.Normalize();
 			v = v*dt*nextDrone->GetSpeed();
 			if (v.Magnitude() > ( Vector3D (nextDrone->GetPosition() )- nextDrone->GetTargetPosition() ).Magnitude() ) {
-				nextDrone->SetPosition(GetTargetPosition());
+				nextDrone->SetPosition(nextDrone->GetTargetPosition());
 			}//close if for overshooting the target 
 			else {						
 				Vector3D positionToMove = Vector3D ( nextDrone->GetPosition())+v;
