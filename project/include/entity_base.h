@@ -39,6 +39,7 @@ class EntityBase : public IEntity {
 				 			 direction = JsonHelper::GetStdFloatVector(details_, "direction");
 							 				 name = JsonHelper::GetString(details_, "name");
 											 					 radius = JsonHelper::GetDouble(details_, "radius");
+//																 simulation = simulation_;
 	 }
 
 	 /**
@@ -142,6 +143,9 @@ bool IsDynamic() const    {
 	  id = Id;
   }
 
+  void SetDeliverySimulation(DeliverySimulation& simu) {
+	  simulation = simu;
+  }
 
  protected:
   picojson::object details;
@@ -154,7 +158,7 @@ bool IsDynamic() const    {
 //	      Vector3D direction;
 		  std::vector<float> position;
 		    std::vector<float> direction;
-
+			DeliverySimulation& simulation;
 }; //close class 
 
 }  // namespace csci3081

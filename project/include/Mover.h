@@ -12,7 +12,7 @@
 
 namespace csci3081 {
 
-	class Mover : public csci3081::EntityBase, public ISubject {
+	class Mover : public csci3081::EntityBase{
 
 	public:
 		Mover(const picojson::object& details_):EntityBase(details_) {

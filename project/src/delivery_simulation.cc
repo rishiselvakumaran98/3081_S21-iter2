@@ -20,6 +20,7 @@ IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
 		if (temp != nullptr) {
 			EntityBase* tempBase = dynamic_cast<EntityBase*>(temp);
 			tempBase->SetId(NewId());
+			tempBase->SetDeliverySimulation(*this);
 			return tempBase;
 		}//close if
 		return nullptr;
@@ -49,14 +50,34 @@ void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
 		const picojson::object& temp = entities_[i]->GetDetails();
 		if (JsonHelper::GetString(temp, "type") == "drone") {
 			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
-			nextDrone->Scheduled_drone(package, dest, graph_);
+//			nextDrone->Scheduled_drone(package, dest, graph_);
+			manager.schedule_mover(nextDrone, package, dest, graph_);
 		}
 	}//close for loop
 }//close function
 
-void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
+void DeliverySimulation::AddObserver(IEntityObserver* observer) {
+	
+	observers_.push_back(observer_to_be_added);
+}
 
-void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
+void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {
+	
+	for (int i = 0; i < observers_.size(); i++) {
+		if (observers_[i] = observer_to_be_removed) {
+			observers_.erase(observers_.begin()+i);
+			break;
+		}//close if
+	}//close for loop
+	
+}
+
+void DeliverySimulation::OnEvent(const picojson::value& object, const IEntity& entity_) {
+	for (int i = 0; i < observers_.size(); i++) {
+		(observers_[i])->OnEvent(object, entity_);
+}	// close for loop 
+} // close method 
+
 
 const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { return entities_; }
 
@@ -65,7 +86,8 @@ void DeliverySimulation::Update(float dt) {
 		const picojson::object& temp = entities_[i]->GetDetails();
 		if (JsonHelper::GetString(temp, "type") == "drone") {
 			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
-			nextDrone->update_drone_movement(dt);
+//			nextDrone->update_drone_movement(dt);
+			manager.update_movement(nextDrone, dt);
 		} //close type check for entity
 	} //close for loop
 } //end function

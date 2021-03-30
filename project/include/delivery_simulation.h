@@ -101,6 +101,10 @@ class DeliverySimulation : public IDeliverySystem {
 
   /** Observer functions will not be used in iteration1 */
   void RemoveObserver(IEntityObserver* observer);
+  /**
+   * @brief function OnEvent for the observer pattern
+   */
+void OnEvent(const picojson::value& object, const IEntity& entity_);
 
   /**
   GetEntities should return all entities that have been ADDED to the system
@@ -140,6 +144,9 @@ class DeliverySimulation : public IDeliverySystem {
   const IGraph* graph_;
     CompositeFactory comp_fact;
 	DeliveryManager manager;
+
+	std::vector<IEntityObserver*> observers_;
+
 	int Id = -1;
 //	  DroneFactory dFact;
 //	    CustomerFactory cFact;
