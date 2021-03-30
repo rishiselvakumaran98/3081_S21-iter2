@@ -10,6 +10,7 @@
 #include "entity_base.h"
 #include "Vector3D.h"
 #include "Package.h"
+#include "drone.h"
 #include "ISubject.h"
 namespace csci3081 {
 	/**
@@ -18,7 +19,8 @@ namespace csci3081 {
 class Multi_package{
 
 public:
-    void Schedule_Multiple_Delivery(IEntity* deliverer, vector<Package*> packages);
+    void Schedule_Multiple_Delivery_Robot(IEntity* deliverer, vector<Package*> packages, const IGraph* graph);
+    void Schedule_Multiple_Delivery_Drone(IEntity* deliverer, vector<Package*> packages, const IGraph* graph);
 };
 
 }  // namespace
