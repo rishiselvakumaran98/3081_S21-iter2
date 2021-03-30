@@ -30,6 +30,17 @@ public:
 	}// constructor
 
 	/**
+	 * @brief  constructor for a vector3d of only x and z coordinates used as Vector2D substitute
+	 * @param x x-value of the vector
+	 * @param z z-value of the vector
+	 */
+	Vector3D (double x, double  z)  {
+		x_ = x; //set the private variable x_ to x;
+		y_ = 0; //set the private variable y_ to 0;
+		z_ = z; //set the private variable z_ to z
+	}// Vector2D substitute constructor
+
+	/**
 	 * @brief default constructor setting all of the elements of the Vector3D to 0.
 	 */
 	Vector3D () {

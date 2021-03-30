@@ -17,8 +17,8 @@ void Robot::Drop_order() {
 	distance_traveled = 0;
 }//close function 
 
-Vector2D  Robot::GetTargetPosition() {
-	return Vector2D ( currentRout->at(currentIndex)[0], currentRout->at(currentIndex)[1]);
+Vector3D  Robot::GetTargetPosition() {
+	return Vector3D ( currentRout->at(currentIndex)[0], currentRout->at(currentIndex)[1]);
 }//close function
 
 bool Robot::IncrTarget() {
@@ -45,8 +45,8 @@ void Robot::SetPackToCustomer(std::vector<std::vector<float>> v) {
 	pack_to_customer   = v;
 }
 
-bool Robot::Within_range(Vector2D v) {
-	if (Vector2D (GetPosition()[0], GetPosition()[1]) .DistanceBetween(v) < GetRadius() ) {
+bool Robot::Within_range(Vector3D v) {
+	if (Vector3D (GetPosition()[0], GetPosition()[1]) .DistanceBetween(v) < GetRadius() ) {
 		return true;
 	}
 	else {
@@ -106,14 +106,14 @@ void Robot::update_Robot_movement(float dt) {
 			} //close if statement 4
 		} //close within range
 		else { //we know we have a package 
-			Vector2D v = GetTargetPosition()-Vector2D(GetPosition()[0], GetPosition()[1]);
+			Vector3D v = GetTargetPosition()-Vector3D(GetPosition()[0], GetPosition()[1]);
 			v.Normalize();
 			v = v*dt*GetSpeed();
-			if (v.Magnitude() > ( Vector2D (GetPosition()[0], GetPosition()[1])- GetTargetPosition() ).Magnitude() ) {
+			if (v.Magnitude() > ( Vector3D (GetPosition()[0], GetPosition()[1])- GetTargetPosition() ).Magnitude() ) {
 				SetPosition(Vector3D(GetTargetPosition()[0], GetTargetPosition()[1], 0));
 			}//close if for overshooting the target 
 			else {						
-				Vector2D positionToMove = Vector2D ( GetPosition()[0], GetPosition()[1])+v;
+				Vector3D positionToMove = Vector3D ( GetPosition()[0], GetPosition()[1])+v;
 				SetPosition(Vector3D(positionToMove[0], positionToMove[1], 0));
 			} //close else for overshooting target
 			Update_Package();
