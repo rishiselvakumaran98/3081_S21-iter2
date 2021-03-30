@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 #include "Customer.h"
-#include "Vector2D.h"
+#include "Vector3D.h"
 #include "robot.h"
 
 namespace csci3081 {
@@ -93,7 +93,7 @@ TEST_F(Robottest, drop_order_test) {
 
 		robot->SetRobotToPack(v_);
 				robot->SetCurrRout("pack");
-		ASSERT_EQ(Vector2D(1,3), robot->GetTargetPosition() );
+		ASSERT_EQ(Vector3D(1,3), robot->GetTargetPosition() );
 	}
 	TEST_F(Robottest, Incr_target_test) {
 		std::vector<float> v;
@@ -111,7 +111,7 @@ TEST_F(Robottest, drop_order_test) {
 		robot->SetRobotToPack(v_);
 				robot->SetCurrRout("pack");
 				robot->IncrTarget();
-		ASSERT_EQ(Vector2D(4,6), robot->GetTargetPosition() );
+		ASSERT_EQ(Vector3D(4,6), robot->GetTargetPosition() );
 	}
 	TEST_F(Robottest, get_package_test) {
 		Package pack(object);
@@ -142,7 +142,7 @@ TEST_F(Robottest, drop_order_test) {
 				robot->SetCurrRout("pack");
 //				Vector3D curR = Vector3D (robot->GetCurrRout() );
 				for (int i = 0; i < v_.size(); i++) {
-					ASSERT_EQ(Vector2D (v_[i][0], v_[i][1]), robot->GetTargetPosition() );
+					ASSERT_EQ(Vector3D (v_[i][0], v_[i][1]), robot->GetTargetPosition() );
 					robot->IncrTarget();
 				}
 	}
@@ -163,18 +163,18 @@ TEST_F(Robottest, drop_order_test) {
 				robot->SetCurrRout("customer");
 //				Vector3D curR = Vector3D (robot->GetCurrRout() );
 				for (int i = 0; i < v_.size(); i++) {
-					ASSERT_EQ(Vector2D (v_[i][0], v_[i][1]), robot->GetTargetPosition() );
+					ASSERT_EQ(Vector3D (v_[i][0], v_[i][1]), robot->GetTargetPosition() );
 					robot->IncrTarget();
 				}
 
 	}
 
 	TEST_F(Robottest, Within_range_test) {
-		Vector2D v(1000, 20);
+		Vector3D v(1000, 20);
 		
 		ASSERT_EQ(false, robot->Within_range(v));
 		
-			Vector2D v1 (6, 0);
+			Vector3D v1 (6, 0);
 		ASSERT_EQ(true, robot->Within_range(v1) );
 	}
 	TEST_F(Robottest, get_speed_test) {
@@ -212,7 +212,7 @@ TEST_F(Robottest, drop_order_test) {
 				robot->SetCurrRout("pack");
 //				Vector3D curR = Vector3D (robot->GetCurrRout() );
 				for (int i = 0; i < v_.size(); i++) {
-					ASSERT_EQ(Vector2D (v_[i][0], v_[i][1]), robot->GetTargetPosition() );
+					ASSERT_EQ(Vector3D (v_[i][0], v_[i][1]), robot->GetTargetPosition() );
 					robot->IncrTarget();
 				}
 	
@@ -233,7 +233,7 @@ TEST_F(Robottest, drop_order_test) {
 				robot->SetCurrRout("customer");
 //				Vector3D curR = Vector3D (robot->GetCurrRout() );
 				for (int i = 0; i < v20_.size(); i++) {
-					ASSERT_EQ(Vector2D (v20_[i][0], v20_[i][1]), robot->GetTargetPosition() );
+					ASSERT_EQ(Vector3D (v20_[i][0], v20_[i][1]), robot->GetTargetPosition() );
 					robot->IncrTarget();
 				}
 	}
@@ -270,7 +270,7 @@ TEST_F(Robottest, drop_order_test) {
 				robot->SetCurrRout("pack");
 //				Vector3D curR = Vector3D (robot->GetCurrRout() );
 				for (int i = 0; i < v_.size(); i++) {
-					ASSERT_EQ(Vector2D (v_[i][0], v_[i][1]), robot->GetTargetPosition() );
+					ASSERT_EQ(Vector3D (v_[i][0], v_[i][1]), robot->GetTargetPosition() );
 					ASSERT_EQ(robot->GetCurIndex(), i);
 					robot->IncrTarget();
 				}
@@ -297,7 +297,7 @@ TEST_F(Robottest, drop_order_test) {
 				
 				std::vector<std::vector<float>> rout = *(robot->GetCurRout() );
 				for (int i = 0; i < v_.size(); i++) {
-					ASSERT_EQ(Vector2D(v_[i][0], v_[i][1]),Vector2D (rout[i][0],rout[i][1]));
+					ASSERT_EQ(Vector3D(v_[i][0], v_[i][1]),Vector3D (rout[i][0],rout[i][1]));
 				}
 	
 				robot->Drop_order();
@@ -320,7 +320,7 @@ TEST_F(Robottest, drop_order_test) {
 //				Vector3D curR = Vector3D (robot->GetCurrRout() );
 				rout2 = *(robot->GetCurRout() );
 				for (int i = 0; i < v20_.size(); i++) {
-					ASSERT_EQ(Vector2D (rout2[i][0], rout2[i][1]), Vector2D ( v20_[i][0], v20_[i][1] ));
+					ASSERT_EQ(Vector3D (rout2[i][0], rout2[i][1]), Vector3D ( v20_[i][0], v20_[i][1] ));
 				}
 	}
 	TEST_F(Robottest, get_distance_traveled) {
