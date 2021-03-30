@@ -9,6 +9,7 @@ DeliverySimulation::DeliverySimulation() {
 	comp_fact = CompositeFactory();
 
 	AddFactory(new DroneFactory());
+	AddFactory(new RobotFactory());
 	AddFactory(new PackageFactory());
 	AddFactory(new CustomerFactory());
 }
@@ -32,6 +33,8 @@ void DeliverySimulation::AddFactory(IEntityFactory* factory) {
 void DeliverySimulation::AddEntity(IEntity* entity) { 
 	if (dynamic_cast<Drone*>(entity)) {
 		std::cout << "Added Drone" << std::endl;
+	} else if (dynamic_cast<Robot*>(entity)) {
+		std::cout << "Added Robot" << std::endl;
 	} else if (dynamic_cast<Package*>(entity)) {
 		std::cout << "Added Package" << std::endl;
 	} else if (dynamic_cast<Customer*>(entity)) {

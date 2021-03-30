@@ -21,6 +21,7 @@
 #include "DroneFactory.h"
 #include "PackageFactory.h"
 #include "CustomerFactory.h"
+#include "RobotFactory.h"
 #include "IEntityFactory.h"
 namespace csci3081 {
 
