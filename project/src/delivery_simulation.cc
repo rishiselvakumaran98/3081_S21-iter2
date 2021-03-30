@@ -54,6 +54,10 @@ void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
 			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
 			nextDrone->Scheduled_drone(package, dest, graph_);
 		}
+		if (JsonHelper::GetString(temp, "type") == "robot") {
+			Robot* nextRobot   = dynamic_cast<Robot*>(entities_[i]);
+			nextRobot->Scheduled_Robot(package, dest, graph_);
+		}
 	}//close for loop
 }//close function
 
@@ -69,6 +73,10 @@ void DeliverySimulation::Update(float dt) {
 		if (JsonHelper::GetString(temp, "type") == "drone") {
 			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
 			nextDrone->update_drone_movement(dt);
+		} //close type check for entity
+		if (JsonHelper::GetString(temp, "type") == "robot") {
+			Robot* nextRobot   = dynamic_cast<Robot*>(entities_[i]);
+			nextRobot->update_Robot_movement(dt);
 		} //close type check for entity
 	} //close for loop
 } //end function
