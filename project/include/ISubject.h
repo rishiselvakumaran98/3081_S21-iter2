@@ -1,3 +1,6 @@
+#ifndef ISUBJECT_H
+#define ISUBJECT_H
+
 #include <EntityProject/facade/delivery_system.h>
 #include "Vector3D.h"
 #include "Vector2D.h"
@@ -20,3 +23,4 @@ namespace csci3081 {
 	}; //close class.
 	
 }//close namespace 
+#endif

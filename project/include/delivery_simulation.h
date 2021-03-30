@@ -139,6 +139,7 @@ class DeliverySimulation : public IDeliverySystem {
   std::vector<IEntity*> entities_;
   const IGraph* graph_;
     CompositeFactory comp_fact;
+	DeliveryManager manager;
 	int Id = -1;
 //	  DroneFactory dFact;
 //	    CustomerFactory cFact;

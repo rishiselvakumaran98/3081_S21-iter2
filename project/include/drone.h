@@ -14,7 +14,7 @@
 #include "Vector3D.h"
 #include "Vector2D.h"
 #include "Battery.h"
-
+#include "Mover.h"
 namespace csci3081 {
    /*******************************************************************************
     * Class Definitions
@@ -24,14 +24,14 @@ namespace csci3081 {
     *
     * This class will have functions that control a drone, pick up and drop off packages. Also, private fields for keep track of the speed and other variables relevant to a drone.
     */
-class Drone : public csci3081::EntityBase {
+class Drone : public Mover   {
 
  public:
 	 /**
 	  *  @brief basic constructor for a drone object. Taking a picojson object that received from entity base.
 	  * @param details_ the picojson from the facade to be used as a setup for the entity
 	 */
-	 Drone(const picojson::object& details_):csci3081::EntityBase(details_) {
+	 Drone(const picojson::object& details_):Mover(details_) {
 		 details = details_;
 		 package_currently_delivering = nullptr;
 		 speed = JsonHelper::GetDouble(details_, "speed");
@@ -46,7 +46,7 @@ class Drone : public csci3081::EntityBase {
 	  * @param b pointer to a Battery to be implemented on the drone
 	  * @param details_ the picojson from the facade 
 	  */
-	 Drone(float s, Battery* b, const picojson::object& details_):EntityBase(details_) {
+	 Drone(float s, Battery* b, const picojson::object& details_):Mover(details_) {
 		 speed = s;
 		 power_source = b;
 		 details = details_;
@@ -61,7 +61,7 @@ distance_traveled = 0;
 	  * @param d the direction float vector of the drone
 	  * @param details the picojson object form the facade 
 	  */
-	 Drone(std::vector<float> p, std::vector<float> d, const picojson::object& details_):EntityBase(details_) {
+	 Drone(std::vector<float> p, std::vector<float> d, const picojson::object& details_):Mover(details_) {
 		 position = p;
 		 direction = d;
 		 details = details_;
@@ -168,9 +168,10 @@ distance_traveled = 0;
 	 */
 	void update_drone_movement(float dt);
 
+
 private:
 	bool has_picked_up;
-	std::vector<std::vector<float>>* currentRout;
+
 	int currentIndex = 0;
 	Battery* power_source;
 	float speed;

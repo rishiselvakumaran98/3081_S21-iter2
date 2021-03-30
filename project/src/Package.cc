@@ -11,4 +11,23 @@ namespace csci3081 {
 	}
 
 
+	void Package::OnPickUp() {
+		picojson::object obj = JsonHelper::CreateJsonObject();
+		JsonHelper::AddStringToJsonObject(obj, "type", "notify");
+		JsonHelper::AddStringToJsonObject(obj, "value", "en route");
+		const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
+		OnEvent(val, *this);
+	}
+
+
+
+	void Package::OnDropOff() {
+		picojson::object obj = JsonHelper::CreateJsonObject();
+		JsonHelper::AddStringToJsonObject(obj, "type", "notify");
+		JsonHelper::AddStringToJsonObject(obj, "value", "delivered");
+		const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
+		OnEvent(val, *this);
+	}
+
+
 }//close namespace 

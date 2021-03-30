@@ -82,45 +82,6 @@ void Drone::Update_Package() {
 	}
 }
 
-void Drone::Scheduled_drone(IEntity* package, IEntity* dest, const IGraph* graph_) {
-	if (GetPackage() == nullptr) {
-		SetDroneToPack( graph_->GetPath(GetPosition(), package->GetPosition() ) );
-		SetPackage(dynamic_cast<Package*>(package));
-		SetCurrRout("pack");
-		SetPackToCustomer ( graph_->GetPath(package->GetPosition(), dest->GetPosition() ));
-		Package* pack = dynamic_cast<Package*>(package);
-		pack->SetCustomer(dynamic_cast<Customer*>(dest));
-	} // close  if
-}
 
-void Drone::update_drone_movement(float dt) {
-	if (GetPackage() != nullptr) {
-		if (Within_range(GetTargetPosition())) {
-			if (IncrTarget()) {
-				if (has_picked_up_getter()) {
-					Drop_order();				
-				}
-				else {
-					Pick_order();
-				}
-			} //close if statement 4
-		} //close within range
-		else { //we know we have a package 
-			Vector3D v = GetTargetPosition()-GetPosition();
-			v.Normalize();
-			v = v*dt*GetSpeed();
-			if (v.Magnitude() > ( Vector3D (GetPosition() )- GetTargetPosition() ).Magnitude() ) {
-				SetPosition(GetTargetPosition());
-			}//close if for overshooting the target 
-			else {						
-				Vector3D positionToMove = Vector3D ( GetPosition())+v;
-				SetPosition(positionToMove);
-			} //close else for overshooting target
-			Update_Package();
-		} //close else of the within range if
-		
-	} //close get package check
-	
-}//close function 
 
 }//close namespace 
