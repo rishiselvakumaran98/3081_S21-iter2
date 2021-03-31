@@ -48,18 +48,36 @@ void DeliverySimulation::SetGraph(const IGraph* graph) {
 }
 
 void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
+	packages_array.push_back(package);
+	customer_array.push_back(dest);
+}//close function
+
+void DeliverySimulation::ActualScheduleDelivery(){
 	for (int i = 0; i < entities_.size(); i++) {
 		const picojson::object& temp = entities_[i]->GetDetails();
 		if (JsonHelper::GetString(temp, "type") == "drone") {
 			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
-			nextDrone->Scheduled_drone(package, dest, graph_);
+			if (nextDrone->GetPackage() == NULL){
+				std::cout << "no. of packs: " << packages_array.size() << std::endl;
+				nextDrone->Scheduled_drone(packages_array[0], customer_array[0], graph_);
+				// Remove the top of the packages_array
+				packages_array.erase(std::remove(packages_array.begin(), packages_array.end(), packages_array[0]), packages_array.end());
+				customer_array.erase(std::remove(customer_array.begin(), customer_array.end(), customer_array[0]), customer_array.end());
+				// std::cout << "hello2" << std::endl;
+			}
+				
 		}
 		if (JsonHelper::GetString(temp, "type") == "robot") {
 			Robot* nextRobot   = dynamic_cast<Robot*>(entities_[i]);
-			nextRobot->Scheduled_Robot(package, dest, graph_);
+			if (nextRobot->GetPackage() == NULL){
+				nextRobot->Scheduled_Robot(packages_array[0], customer_array[0], graph_);
+				// Remove the top of the packages_array
+				packages_array.erase(std::remove(packages_array.begin(), packages_array.end(), packages_array[0]), packages_array.end());
+				customer_array.erase(std::remove(customer_array.begin(), customer_array.end(), customer_array[0]), customer_array.end());
+			}
 		}
 	}//close for loop
-}//close function
+}
 
 void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
 
@@ -68,6 +86,9 @@ void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
 const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { return entities_; }
 
 void DeliverySimulation::Update(float dt) {
+	#ifndef DELIVERY
+		ActualScheduleDelivery();
+	#endif
 	for (int i = 0; i < entities_.size(); i++) {
 		const picojson::object& temp = entities_[i]->GetDetails();
 		if (JsonHelper::GetString(temp, "type") == "drone") {

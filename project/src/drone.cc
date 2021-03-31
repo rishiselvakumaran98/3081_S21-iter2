@@ -73,12 +73,12 @@ else if (rout == "customer") {
 
 void Drone::Update_Package() {
 	Vector3D initial_position = Vector3D (package_currently_delivering->GetPosition());
-	std::cout << "initial package position" << initial_position.ToString() << std::endl;
+	// std::cout << "initial package position" << initial_position.ToString() << std::endl;
 	if (has_picked_up == true) {
 //		std::cout << "package flying around!!!!" << std::endl;
 		package_currently_delivering->SetPosition(Vector3D (this->GetPosition() ));
 		Vector3D temp = Vector3D (package_currently_delivering->GetPosition());
-		std::cout << "package position is: " << temp.ToString() << std::endl;
+		// std::cout << "package position is: " << temp.ToString() << std::endl;
 	}
 }
 

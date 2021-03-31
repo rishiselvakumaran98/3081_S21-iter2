@@ -108,7 +108,7 @@ void Robot::update_Robot_movement(float dt) {
 			} //close if statement 4
 		} //close within range
 		else { //we know we have a package 
-			Vector3D v = Vector3D(GetTargetPosition()[0], GetTargetPosition()[2])-std::vector<float>(GetPosition()[0], GetPosition()[2]);
+			Vector3D v = GetTargetPosition()-GetPosition();
 			v.Normalize();
 			v = v*dt*GetSpeed();
 			if (v.Magnitude() > ( Vector3D (GetPosition())- GetTargetPosition() ).Magnitude() ) {
