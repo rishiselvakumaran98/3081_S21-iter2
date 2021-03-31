@@ -17,7 +17,7 @@ namespace csci3081 {
     * @brief The base class for creating customers.
 	 * enherits from the upper class entity class, using its constructor to generate new customers
 	 */
-class Customer : public csci3081::EntityBase {
+class Customer : public EntityBase {
 
 public:
 	/**
