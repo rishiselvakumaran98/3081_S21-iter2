@@ -28,6 +28,7 @@ namespace csci3081 {
  *
  * See the documentation for IEntity for more information
  */
+	class DeliverySimulation;
 class EntityBase : public IEntity {
  public:
 	   EntityBase(){}
@@ -74,8 +75,6 @@ const std::string& GetName()   {
   * @brief this function returns a vector float containing the position of the object.
    */
 const std::vector<float>& GetPosition() const   {
-//	position_vec = Vector3D::ConvertToVector(position);
-//	return position_vec;
 	return position;
   } //close position getter
 
@@ -145,7 +144,7 @@ bool IsDynamic() const    {
 	  id = Id;
   }
 
-  void SetDeliverySimulation(DeliverySimulation& simu) {
+  void SetDeliverySimulation(DeliverySimulation* simu) {
 	  simulation = simu;
   }
 
@@ -160,7 +159,8 @@ bool IsDynamic() const    {
 //	      Vector3D direction;
 		  std::vector<float> position;
 		    std::vector<float> direction;
-			DeliverySimulation& simulation = nullptr;
+			DeliverySimulation* simulation;
+
 }; //close class 
 
 }  // namespace csci3081

@@ -145,14 +145,9 @@ void OnEvent(const picojson::value& object, const IEntity& entity_);
   const IGraph* graph_;
     CompositeFactory comp_fact;
 	DeliveryManager manager;
-
 	std::vector<IEntityObserver*> observers_;
-
 	int Id = -1;
-//	  DroneFactory dFact;
-//	    CustomerFactory cFact;
-//		  PackageFactory pFact;
-};
+}; //close class
 
 }  // namespace csci3081
 

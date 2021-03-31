@@ -25,7 +25,7 @@ namespace csci3081 {
     *
     * This class will have functions that control a drone, pick up and drop off packages. Also, private fields for keep track of the speed and other variables relevant to a drone.
     */
-class Drone : public Mover   {
+class Drone : public csci3081::Mover   {
 
  public:
 	 /**

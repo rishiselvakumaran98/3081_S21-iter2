@@ -7,7 +7,7 @@ namespace csci3081 {
 		JsonHelper::AddStringToJsonObject(obj, "type", "notify");
 		JsonHelper::AddStringToJsonObject(obj, "value", "scheduled");
 		const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
-		simulation.OnEvent(val, *this);
+		simulation->OnEvent(val, *this);
 	}
 
 
@@ -16,7 +16,7 @@ namespace csci3081 {
 		JsonHelper::AddStringToJsonObject(obj, "type", "notify");
 		JsonHelper::AddStringToJsonObject(obj, "value", "en route");
 		const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
-		simulation.OnEvent(val, *this);
+		simulation->OnEvent(val, *this);
 	}
 
 
@@ -26,7 +26,7 @@ namespace csci3081 {
 		JsonHelper::AddStringToJsonObject(obj, "type", "notify");
 		JsonHelper::AddStringToJsonObject(obj, "value", "delivered");
 		const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
-		simulation.OnEvent(val, *this);
+		simulation->OnEvent(val, *this);
 	}
 
 
