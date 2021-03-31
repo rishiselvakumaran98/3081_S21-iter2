@@ -64,8 +64,8 @@ Vector2D Vector2D::operator-(Vector2D v) {
 	return temp;
 } //subtract each member of v and the current vector adding the result to temp and returning it at the end
 
-Vector2D Vector2D::ConvertTo3D() {
-	Vector2D temp;
+Vector3D Vector2D::ConvertTo3D() {
+	Vector3D temp;
 
 	temp[0] = x_;
 	temp[1]=0;

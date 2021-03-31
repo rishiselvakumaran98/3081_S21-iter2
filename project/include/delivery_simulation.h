@@ -21,6 +21,7 @@
 #include "DroneFactory.h"
 #include "PackageFactory.h"
 #include "CustomerFactory.h"
+#include "RobotFactory.h"
 #include "IEntityFactory.h"
 namespace csci3081 {
 
@@ -97,6 +98,7 @@ class DeliverySimulation : public IDeliverySystem {
   void ScheduleDelivery(IEntity* package, IEntity* dest);
   /* 
   /** Observer functions will not be used in iteration1 */
+  void ActualScheduleDelivery();
   void AddObserver(IEntityObserver* observer);
 
   /** Observer functions will not be used in iteration1 */
@@ -137,6 +139,8 @@ class DeliverySimulation : public IDeliverySystem {
   // the most straightforward way of storing the entities in the system.
   // Feel free to use it as is or change it.
   std::vector<IEntity*> entities_;
+  std::vector<IEntity*> packages_array;
+  std::vector<IEntity*> customer_array;
   const IGraph* graph_;
     CompositeFactory comp_fact;
 	int Id = -1;

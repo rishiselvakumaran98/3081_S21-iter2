@@ -9,6 +9,7 @@ DeliverySimulation::DeliverySimulation() {
 	comp_fact = CompositeFactory();
 
 	AddFactory(new DroneFactory());
+	AddFactory(new RobotFactory());
 	AddFactory(new PackageFactory());
 	AddFactory(new CustomerFactory());
 }
@@ -32,6 +33,8 @@ void DeliverySimulation::AddFactory(IEntityFactory* factory) {
 void DeliverySimulation::AddEntity(IEntity* entity) { 
 	if (dynamic_cast<Drone*>(entity)) {
 		std::cout << "Added Drone" << std::endl;
+	} else if (dynamic_cast<Robot*>(entity)) {
+		std::cout << "Added Robot" << std::endl;
 	} else if (dynamic_cast<Package*>(entity)) {
 		std::cout << "Added Package" << std::endl;
 	} else if (dynamic_cast<Customer*>(entity)) {
@@ -45,14 +48,37 @@ void DeliverySimulation::SetGraph(const IGraph* graph) {
 }
 
 void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
+	packages_array.push_back(package);
+	customer_array.push_back(dest);
+	// print amount of packages in the vector array
+}//close function
+
+void DeliverySimulation::ActualScheduleDelivery(){
 	for (int i = 0; i < entities_.size(); i++) {
 		const picojson::object& temp = entities_[i]->GetDetails();
 		if (JsonHelper::GetString(temp, "type") == "drone") {
 			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
-			nextDrone->Scheduled_drone(package, dest, graph_);
+			if (nextDrone->GetPackage() == NULL){
+				std::cout << "no. of packs: " << packages_array.size() << std::endl;
+				nextDrone->Scheduled_drone(packages_array[0], customer_array[0], graph_);
+				// Remove the top of the packages_array
+				packages_array.erase(std::remove(packages_array.begin(), packages_array.end(), packages_array[0]), packages_array.end());
+				customer_array.erase(std::remove(customer_array.begin(), customer_array.end(), customer_array[0]), customer_array.end());
+				// std::cout << "hello2" << std::endl;
+			}
+				
+		}
+		if (JsonHelper::GetString(temp, "type") == "robot") {
+			Robot* nextRobot   = dynamic_cast<Robot*>(entities_[i]);
+			if (nextRobot->GetPackage() == NULL){
+				nextRobot->Scheduled_Robot(packages_array[0], customer_array[0], graph_);
+				// Remove the top of the packages_array
+				packages_array.erase(std::remove(packages_array.begin(), packages_array.end(), packages_array[0]), packages_array.end());
+				customer_array.erase(std::remove(customer_array.begin(), customer_array.end(), customer_array[0]), customer_array.end());
+			}
 		}
 	}//close for loop
-}//close function
+}
 
 void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
 
@@ -61,11 +87,18 @@ void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
 const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { return entities_; }
 
 void DeliverySimulation::Update(float dt) {
+	#ifndef DELIVERY
+		ActualScheduleDelivery();
+	#endif
 	for (int i = 0; i < entities_.size(); i++) {
 		const picojson::object& temp = entities_[i]->GetDetails();
 		if (JsonHelper::GetString(temp, "type") == "drone") {
 			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
 			nextDrone->update_drone_movement(dt);
+		} //close type check for entity
+		if (JsonHelper::GetString(temp, "type") == "robot") {
+			Robot* nextRobot   = dynamic_cast<Robot*>(entities_[i]);
+			nextRobot->update_Robot_movement(dt);
 		} //close type check for entity
 	} //close for loop
 } //end function

@@ -70,7 +70,7 @@ public:
 	/**
 	 * @brief convert the current Vector2D in Vector3D by adding an extra coordinate in the format (x, 0, z) where z in the new vector was y in the Vector2D
 	 */
-	Vector2D ConvertTo3D();
+	Vector3D ConvertTo3D();
 
 	/**
 	 * @brief function that multiplies intire Vector2D by an float.
