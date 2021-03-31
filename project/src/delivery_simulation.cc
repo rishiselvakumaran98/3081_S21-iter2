@@ -50,6 +50,7 @@ void DeliverySimulation::SetGraph(const IGraph* graph) {
 void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
 	packages_array.push_back(package);
 	customer_array.push_back(dest);
+	// print amount of packages in the vector array
 }//close function
 
 void DeliverySimulation::ActualScheduleDelivery(){
