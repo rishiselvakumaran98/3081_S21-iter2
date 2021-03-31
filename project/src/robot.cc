@@ -18,7 +18,7 @@ void Robot::Drop_order() {
 }//close function 
 
 Vector3D  Robot::GetTargetPosition() {
-	return Vector3D ( currentRout->at(currentIndex)[0], currentRout->at(currentIndex)[1]);
+	return Vector3D ( currentRout->at(currentIndex));
 }//close function
 
 bool Robot::IncrTarget() {
@@ -46,7 +46,7 @@ void Robot::SetPackToCustomer(std::vector<std::vector<float>> v) {
 }
 
 bool Robot::Within_range(Vector3D v) {
-	if (Vector3D (GetPosition()[0], GetPosition()[1]) .DistanceBetween(v) < GetRadius() ) {
+	if (Vector3D (GetPosition()) .DistanceBetween(v) < GetRadius() ) {
 		return true;
 	}
 	else {
@@ -72,12 +72,12 @@ else if (rout == "customer") {
 }
 
 void Robot::Update_Package() {
-	Vector2D initial_position = Vector2D (package_currently_delivering->GetPosition()[0], package_currently_delivering->GetPosition()[1]);
-	std::cout << "initial package position" << initial_position.ToString() << std::endl;
+	Vector3D initial_position = Vector3D (package_currently_delivering->GetPosition());
+	// std::cout << "initial package position" << initial_position.ToString() << std::endl;
 	if (has_picked_up == true) {
 //		std::cout << "package flying around!!!!" << std::endl;
 		package_currently_delivering->SetPosition(Vector3D (this->GetPosition() ));
-		Vector2D temp = Vector2D (package_currently_delivering->GetPosition()[0], package_currently_delivering->GetPosition()[1]);
+		Vector3D temp = Vector3D (package_currently_delivering->GetPosition());
 		std::cout << "package position is: " << temp.ToString() << std::endl;
 	}
 }
@@ -96,25 +96,28 @@ void Robot::Scheduled_Robot(IEntity* package, IEntity* dest, const IGraph* graph
 void Robot::update_Robot_movement(float dt) {
 	if (GetPackage() != nullptr) {
 		if (Within_range(GetTargetPosition())) {
+			std::cout << "Within Range" << std::endl;
 			if (IncrTarget()) {
 				if (has_picked_up_getter()) {
 					Drop_order();				
 				}
 				else {
+					std::cout << "Picked orders Robot" << std::endl;
 					Pick_order();
 				}
 			} //close if statement 4
 		} //close within range
 		else { //we know we have a package 
-			Vector3D v = GetTargetPosition()-Vector3D(GetPosition()[0], GetPosition()[1]);
+			Vector3D v = Vector3D(GetTargetPosition()[0], GetTargetPosition()[2])-std::vector<float>(GetPosition()[0], GetPosition()[2]);
 			v.Normalize();
 			v = v*dt*GetSpeed();
-			if (v.Magnitude() > ( Vector3D (GetPosition()[0], GetPosition()[1])- GetTargetPosition() ).Magnitude() ) {
-				SetPosition(Vector3D(GetTargetPosition()[0], GetTargetPosition()[1], 0));
+			if (v.Magnitude() > ( Vector3D (GetPosition())- GetTargetPosition() ).Magnitude() ) {
+				SetPosition(GetTargetPosition());
 			}//close if for overshooting the target 
 			else {						
-				Vector3D positionToMove = Vector3D ( GetPosition()[0], GetPosition()[1])+v;
-				SetPosition(Vector3D(positionToMove[0], positionToMove[1], 0));
+				Vector3D positionToMove = Vector3D ( GetPosition())+v;
+				std::cout << "Robot position" << positionToMove.ToString() << std::endl;
+				SetPosition(positionToMove);
 			} //close else for overshooting target
 			Update_Package();
 		} //close else of the within range if
