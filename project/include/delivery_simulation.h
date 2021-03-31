@@ -22,6 +22,7 @@
 #include "PackageFactory.h"
 #include "CustomerFactory.h"
 #include "IEntityFactory.h"
+#include "DeliveryManager.h"
 namespace csci3081 {
 
 /*******************************************************************************

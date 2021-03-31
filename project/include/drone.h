@@ -15,6 +15,7 @@
 #include "Vector2D.h"
 #include "Battery.h"
 #include "Mover.h"
+#include "entity_base.h"
 namespace csci3081 {
    /*******************************************************************************
     * Class Definitions

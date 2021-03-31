@@ -12,6 +12,8 @@
 #include "Vector3D.h"
 #include "Vector2D.h"
 #include "json_helper.h"
+#include "delivery_simulation.h"
+
 namespace csci3081 {
 
 /*******************************************************************************
@@ -39,7 +41,7 @@ class EntityBase : public IEntity {
 				 			 direction = JsonHelper::GetStdFloatVector(details_, "direction");
 							 				 name = JsonHelper::GetString(details_, "name");
 											 					 radius = JsonHelper::GetDouble(details_, "radius");
-//																 simulation = simulation_;
+//																 																 simulation = simulation_;
 	 }
 
 	 /**
@@ -150,7 +152,7 @@ bool IsDynamic() const    {
  protected:
   picojson::object details;
   bool dynamic;
-  int id;
+    int id;
   std::string name;
   float radius;
   int version;
@@ -158,7 +160,7 @@ bool IsDynamic() const    {
 //	      Vector3D direction;
 		  std::vector<float> position;
 		    std::vector<float> direction;
-			DeliverySimulation& simulation;
+			DeliverySimulation& simulation = nullptr;
 }; //close class 
 
 }  // namespace csci3081
