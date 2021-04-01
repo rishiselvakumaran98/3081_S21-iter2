@@ -6,7 +6,8 @@
 
 /**
  * include
- */#include <EntityProject/facade/delivery_system.h>
+ */
+#include <EntityProject/facade/delivery_system.h>
 #include "Vector3D.h"
 #include "Vector2D.h"
 #include "json_helper.h"
@@ -25,7 +26,7 @@ class RobotFactory : public IEntityFactory {
 public:
 	/**
 	 * @brief override function from IEntityFactory to create Robots.
-	 * @param  details_ the picojson to be analysed and possibly made into a Robot.
+	 * @param  object the picojson to be analysed and possibly made into a Robot.
 	 */
 	IEntity* CreateEntity(const picojson::object& object);
 }; //close class

@@ -59,12 +59,9 @@ void DeliverySimulation::ActualScheduleDelivery(){
 		if (JsonHelper::GetString(temp, "type") == "drone") {
 			Drone* nextDrone   = dynamic_cast<Drone*>(entities_[i]);
 			if (nextDrone->GetPackage() == NULL){
-				std::cout << "no. of packs: " << packages_array.size() << std::endl;
 				nextDrone->Scheduled_drone(packages_array[0], customer_array[0], graph_);
-				// Remove the top of the packages_array
 				packages_array.erase(std::remove(packages_array.begin(), packages_array.end(), packages_array[0]), packages_array.end());
 				customer_array.erase(std::remove(customer_array.begin(), customer_array.end(), customer_array[0]), customer_array.end());
-				// std::cout << "hello2" << std::endl;
 			}
 				
 		}
@@ -87,9 +84,9 @@ void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
 const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { return entities_; }
 
 void DeliverySimulation::Update(float dt) {
-	#ifndef DELIVERY
+	// #ifndef DELIVERY
 		ActualScheduleDelivery();
-	#endif
+	// #endif
 	for (int i = 0; i < entities_.size(); i++) {
 		const picojson::object& temp = entities_[i]->GetDetails();
 		if (JsonHelper::GetString(temp, "type") == "drone") {

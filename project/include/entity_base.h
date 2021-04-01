@@ -145,7 +145,7 @@ bool IsDynamic() const    {
 
  protected:
   picojson::object details;
-  bool dynamic;
+  bool dynamic = true;
   int id;
   std::string name;
   float radius;

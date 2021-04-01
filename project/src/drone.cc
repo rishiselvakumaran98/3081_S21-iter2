@@ -73,12 +73,13 @@ else if (rout == "customer") {
 
 void Drone::Update_Package() {
 	Vector3D initial_position = Vector3D (package_currently_delivering->GetPosition());
-	std::cout << "initial package position" << initial_position.ToString() << std::endl;
+	// std::cout << "initial package position" << initial_position.ToString() << std::endl;
 	if (has_picked_up == true) {
 		// std::cout << "package flying around!!!!" << std::endl;
 		package_currently_delivering->SetPosition(Vector3D (this->GetPosition() ));
+		// std::cout << "drone: " << GetId() << "'s package is: " << JsonHelper::GetString(package_currently_delivering->GetDetails(), "name") << std::endl;
 		Vector3D temp = Vector3D (package_currently_delivering->GetPosition());
-		std::cout << "package position is: " << temp.ToString() << std::endl;
+		// std::cout << "drone: " << GetId() << " package position is: " << temp.ToString() << std::endl;
 	}
 }
 
@@ -94,7 +95,7 @@ void Drone::Scheduled_drone(IEntity* package, IEntity* dest, const IGraph* graph
 }
 
 void Drone::update_drone_movement(float dt) {
-	if (GetPackage() != nullptr) {
+	if (GetPackage() != nullptr && GetPackage() != NULL) {
 		if (Within_range(GetTargetPosition())) {
 			if (IncrTarget()) {
 				if (has_picked_up_getter()) {
@@ -110,11 +111,11 @@ void Drone::update_drone_movement(float dt) {
 			v.Normalize();
 			v = v*dt*GetSpeed();
 			if (v.Magnitude() > ( Vector3D (GetPosition() )- GetTargetPosition() ).Magnitude() ) {
-				SetPosition(GetTargetPosition());
+				this->SetPosition(GetTargetPosition());
 			}//close if for overshooting the target 
 			else {						
 				Vector3D positionToMove = Vector3D ( GetPosition())+v;
-				SetPosition(positionToMove);
+				this->SetPosition(positionToMove);
 			} //close else for overshooting target
 			Update_Package();
 		} //close else of the within range if
