@@ -21,6 +21,7 @@ IEntity* DeliverySimulation::CreateEntity(const picojson::object& val) {
 		if (temp != nullptr) {
 			EntityBase* tempBase = dynamic_cast<EntityBase*>(temp);
 			tempBase->SetId(NewId());
+			tempBase->SetIsub(&isub);
 			return tempBase;
 		}//close if
 		return nullptr;
@@ -77,9 +78,13 @@ void DeliverySimulation::ActualScheduleDelivery(){
 	}//close for loop
 }
 
-void DeliverySimulation::AddObserver(IEntityObserver* observer) {}
+void DeliverySimulation::AddObserver(IEntityObserver* observer) {
+	isub.AddObserver(observer);
+}
 
-void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {}
+void DeliverySimulation::RemoveObserver(IEntityObserver* observer) {
+	isub.RemoveObserver(observer);
+}
 
 const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { return entities_; }
 

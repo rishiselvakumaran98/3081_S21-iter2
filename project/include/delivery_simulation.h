@@ -23,6 +23,8 @@
 #include "CustomerFactory.h"
 #include "RobotFactory.h"
 #include "IEntityFactory.h"
+#include "ISubject.h"
+
 namespace csci3081 {
 
 /*******************************************************************************
@@ -147,6 +149,7 @@ class DeliverySimulation : public IDeliverySystem {
 //	  DroneFactory dFact;
 //	    CustomerFactory cFact;
 //		  PackageFactory pFact;
+	ISubject isub;
 };
 
 }  // namespace csci3081

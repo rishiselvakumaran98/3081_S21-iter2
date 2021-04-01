@@ -19,6 +19,7 @@ void ISubject::RemoveObserver(IEntityObserver* observer_to_be_removed) {
 void ISubject::OnEvent(const picojson::value& object, const IEntity& entity_) {
 	for (int i = 0; i < observers_.size(); i++) {
 		(observers_[i])->OnEvent(object, entity_);
+		std::cout << "calling observer : " << i << std::endl;
 }	// close for loop 
 } // close method 
 

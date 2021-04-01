@@ -4,12 +4,14 @@ namespace csci3081 {
 
 
 void Drone::Pick_order() {
+	package_currently_delivering->OnPickUp();
 	currentIndex = 0;
 	has_picked_up = true;
 	currentRout = &pack_to_customer;
 }//end of function
 
 void Drone::Drop_order() {
+	package_currently_delivering->OnDropOff();
 	has_picked_up = false;
 		package_currently_delivering->SetPosition(Vector3D(0, -1000, 0));
 	package_currently_delivering = nullptr;
@@ -85,12 +87,15 @@ void Drone::Update_Package() {
 
 void Drone::Scheduled_drone(IEntity* package, IEntity* dest, const IGraph* graph_) {
 	if (GetPackage() == nullptr) {
+
 		SetDroneToPack( graph_->GetPath(GetPosition(), package->GetPosition() ) );
 		SetPackage(dynamic_cast<Package*>(package));
 		SetCurrRout("pack");
 		SetPackToCustomer ( graph_->GetPath(package->GetPosition(), dest->GetPosition() ));
 		Package* pack = dynamic_cast<Package*>(package);
 		pack->SetCustomer(dynamic_cast<Customer*>(dest));
+		package_currently_delivering->OnSchedule();
+				OnMove();
 	} // close  if
 }
 
@@ -99,10 +104,13 @@ void Drone::update_drone_movement(float dt) {
 		if (Within_range(GetTargetPosition())) {
 			if (IncrTarget()) {
 				if (has_picked_up_getter()) {
-					Drop_order();				
+					Drop_order();
+					OnIdle();
 				}
 				else {
+					OnIdle();
 					Pick_order();
+					OnMove();
 				}
 			} //close if statement 4
 		} //close within range
@@ -121,7 +129,22 @@ void Drone::update_drone_movement(float dt) {
 		} //close else of the within range if
 		
 	} //close get package check
-	
 }//close function 
 
+void Drone::OnIdle() {
+	picojson::object obj = JsonHelper::CreateJsonObject();
+	JsonHelper::AddStringToJsonObject(obj, "type", "notify");
+	JsonHelper::AddStringToJsonObject(obj, "value", "idle");
+	const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
+	entity_sub->OnEvent(val, *this);
+}
+
+void Drone::OnMove() {
+	picojson::object obj = JsonHelper::CreateJsonObject();
+	JsonHelper::AddStringToJsonObject(obj, "type", "notify");
+	JsonHelper::AddStringToJsonObject(obj, "value", "moving");
+	JsonHelper::AddStdVectorVectorFloatToJsonObject(obj, "value", *currentRout);
+	const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
+	entity_sub->OnEvent(val, *this);
+}
 }//close namespace 
