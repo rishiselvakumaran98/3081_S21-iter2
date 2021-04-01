@@ -167,6 +167,11 @@ distance_traveled = 0;
 	 */
 	void update_Robot_movement(float dt);
 
+
+	void OnIdle();
+	void OnMove();
+
+
 private:
 	bool has_picked_up;
 	std::vector<std::vector<float>>* currentRout;

@@ -4,12 +4,13 @@ namespace csci3081 {
 
 
 void Robot::Pick_order() {
-	currentIndex = 0;
+	package_currently_delivering->OnPickUp();	currentIndex = 0;
 	has_picked_up = true;
 	currentRout = &pack_to_customer;
 }//end of function
 
 void Robot::Drop_order() {
+	package_currently_delivering->OnDropOff();
 	has_picked_up = false;
 		package_currently_delivering->SetPosition(Vector3D(0, -1000, 0));
 	package_currently_delivering = nullptr;
@@ -90,6 +91,7 @@ void Robot::Scheduled_Robot(IEntity* package, IEntity* dest, const IGraph* graph
 		SetPackToCustomer ( graph_->GetPath(package->GetPosition(), dest->GetPosition() ));
 		Package* pack = dynamic_cast<Package*>(package);
 		pack->SetCustomer(dynamic_cast<Customer*>(dest));
+		OnMove();
 	} // close  if
 }
 
@@ -99,11 +101,14 @@ void Robot::update_Robot_movement(float dt) {
 			std::cout << "Within Range" << std::endl;
 			if (IncrTarget()) {
 				if (has_picked_up_getter()) {
-					Drop_order();				
+					Drop_order();
+					OnIdle();
 				}
 				else {
 					std::cout << "Picked orders Robot" << std::endl;
+					OnIdle();
 					Pick_order();
+					OnMove();
 				}
 			} //close if statement 4
 		} //close within range
@@ -124,6 +129,24 @@ void Robot::update_Robot_movement(float dt) {
 		
 	} //close get package check
 	
+	
 }//close function 
+
+void Robot::OnIdle() {
+	picojson::object obj = JsonHelper::CreateJsonObject();
+	JsonHelper::AddStringToJsonObject(obj, "type", "notify");
+	JsonHelper::AddStringToJsonObject(obj, "value", "idle");
+	const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
+	entity_sub->OnEvent(val, *this);
+}
+
+void Robot::OnMove() {
+	picojson::object obj = JsonHelper::CreateJsonObject();
+	JsonHelper::AddStringToJsonObject(obj, "type", "notify");
+	JsonHelper::AddStringToJsonObject(obj, "value", "moving");
+	JsonHelper::AddStdVectorVectorFloatToJsonObject(obj, "path", *currentRout);
+	const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
+	entity_sub->OnEvent(val, *this);
+}
 
 }//close namespace 

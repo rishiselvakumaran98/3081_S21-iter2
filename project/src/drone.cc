@@ -143,7 +143,7 @@ void Drone::OnMove() {
 	picojson::object obj = JsonHelper::CreateJsonObject();
 	JsonHelper::AddStringToJsonObject(obj, "type", "notify");
 	JsonHelper::AddStringToJsonObject(obj, "value", "moving");
-	JsonHelper::AddStdVectorVectorFloatToJsonObject(obj, "value", *currentRout);
+	JsonHelper::AddStdVectorVectorFloatToJsonObject(obj, "path", *currentRout);
 	const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
 	entity_sub->OnEvent(val, *this);
 }
