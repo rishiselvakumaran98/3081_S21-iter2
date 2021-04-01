@@ -11,11 +11,13 @@
 #include "Vector3D.h"
 #include "Customer.h"
 #include "ISubject.h"
+#include "Mover.h"
+
 namespace csci3081 {
 	/**
 	 * @brief class responsible for the generation of packages.
 	 */
-class Package : public EntityBase  {
+class Package : public EntityBase, public Mover  {
 
 public:
 	/**
@@ -64,6 +66,7 @@ void SetCustomer(Customer* p) { person_to_receive = p;}
  * @brief returns the pointer to the Customer object that is the person_to_receive field.
  */
 Customer* GetRecipient() {return person_to_receive;}
+//observer functions
 
 void OnSchedule();
 void OnPickUp();

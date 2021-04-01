@@ -1,4 +1,4 @@
-#include "delivery_simulation.h"
+#include "delivery_simulation.h")
 #include "entity_base.h"
 #include "json_helper.h"
 #include "drone.h"
@@ -57,19 +57,16 @@ void DeliverySimulation::ScheduleDelivery(IEntity* package, IEntity* dest) {
 }//close function
 
 void DeliverySimulation::AddObserver(IEntityObserver* observer_to_be_added) {
-	
 	observers_.push_back(observer_to_be_added);
 }
 
 void DeliverySimulation::RemoveObserver(IEntityObserver* observer_to_be_removed) {
-	
 	for (int i = 0; i < observers_.size(); i++) {
 		if (observers_[i] = observer_to_be_removed) {
 			observers_.erase(observers_.begin()+i);
 			break;
 		}//close if
 	}//close for loop
-	
 }
 
 void DeliverySimulation::OnEvent(const picojson::value& object, const IEntity& entity_) {

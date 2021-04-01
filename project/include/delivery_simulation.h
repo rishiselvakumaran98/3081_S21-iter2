@@ -23,12 +23,13 @@
 #include "CustomerFactory.h"
 #include "IEntityFactory.h"
 #include "DeliveryManager.h"
+
 namespace csci3081 {
 
 /*******************************************************************************
  * Class Definitions
  ******************************************************************************/
-/**
+/*******************************************************************************
  * @brief This is the facade for the delivery system
  *
  * This class will delegate operations for the whole drone delivery system.
@@ -144,7 +145,7 @@ void OnEvent(const picojson::value& object, const IEntity& entity_);
   std::vector<IEntity*> entities_;
   const IGraph* graph_;
     CompositeFactory comp_fact;
-	DeliveryManager manager;
+//	DeliveryManager manager;
 	std::vector<IEntityObserver*> observers_;
 	int Id = -1;
 }; //close class

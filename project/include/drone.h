@@ -7,15 +7,16 @@
 /*******************************************************************************
  * Includes
  ******************************************************************************/
-#include "entity_base.h"
+//#include "entity_base.h"
 #include <vector>
 #include <string>
 #include "Package.h"
 #include "Vector3D.h"
-#include "Vector2D.h"
+//#include "Vector2D.h"
 #include "Battery.h"
 #include "Mover.h"
-#include "entity_base.h"
+//#include "entity_base.h"
+//#include "Notifier.h"
 namespace csci3081 {
    /*******************************************************************************
     * Class Definitions
@@ -25,7 +26,7 @@ namespace csci3081 {
     *
     * This class will have functions that control a drone, pick up and drop off packages. Also, private fields for keep track of the speed and other variables relevant to a drone.
     */
-class Drone : public Mover   {
+class Drone : public EntityBase, public Mover {
 
  public:
 	 /**

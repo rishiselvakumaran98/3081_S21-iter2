@@ -12,7 +12,6 @@
 #include "Vector3D.h"
 #include "Vector2D.h"
 #include "json_helper.h"
-#include "delivery_simulation.h"
 
 namespace csci3081 {
 
@@ -28,7 +27,7 @@ namespace csci3081 {
  *
  * See the documentation for IEntity for more information
  */
-	class DeliverySimulation;
+//	class DeliverySimulation;
 class EntityBase : public IEntity {
  public:
 	   EntityBase(){}
@@ -144,10 +143,6 @@ bool IsDynamic() const    {
 	  id = Id;
   }
 
-  void SetDeliverySimulation(DeliverySimulation* simu) {
-	  simulation = simu;
-  }
-
  protected:
   picojson::object details;
   bool dynamic;
@@ -159,8 +154,6 @@ bool IsDynamic() const    {
 //	      Vector3D direction;
 		  std::vector<float> position;
 		    std::vector<float> direction;
-			DeliverySimulation* simulation;
-
 }; //close class 
 
 }  // namespace csci3081
