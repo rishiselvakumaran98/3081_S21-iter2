@@ -85,7 +85,7 @@ const std::vector<IEntity*>& DeliverySimulation::GetEntities() const { return en
 
 void DeliverySimulation::Update(float dt) {
 	// #ifndef DELIVERY
-		ActualScheduleDelivery();
+	ActualScheduleDelivery();
 	// #endif
 	for (int i = 0; i < entities_.size(); i++) {
 		const picojson::object& temp = entities_[i]->GetDetails();
