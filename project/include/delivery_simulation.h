@@ -22,7 +22,7 @@
 #include "PackageFactory.h"
 #include "CustomerFactory.h"
 #include "IEntityFactory.h"
-#include "DeliveryManager.h"
+//#include "DeliveryManager.h"
 
 namespace csci3081 {
 
@@ -106,7 +106,7 @@ class DeliverySimulation : public IDeliverySystem {
   /**
    * @brief function OnEvent for the observer pattern
    */
-void OnEvent(const picojson::value& object, const IEntity& entity_);
+//void OnEvent(const picojson::value& object, const IEntity& entity_);
 
   /**
   GetEntities should return all entities that have been ADDED to the system
@@ -145,8 +145,9 @@ void OnEvent(const picojson::value& object, const IEntity& entity_);
   std::vector<IEntity*> entities_;
   const IGraph* graph_;
     CompositeFactory comp_fact;
-//	DeliveryManager manager;
-	std::vector<IEntityObserver*> observers_;
+//		DeliveryManager manager;
+	ISubject isub;
+//	std::vector<IEntityObserver*> observers_;
 	int Id = -1;
 }; //close class
 

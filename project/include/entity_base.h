@@ -12,7 +12,7 @@
 #include "Vector3D.h"
 #include "Vector2D.h"
 #include "json_helper.h"
-
+#include "ISubject.h"
 namespace csci3081 {
 
 /*******************************************************************************
@@ -143,6 +143,13 @@ bool IsDynamic() const    {
 	  id = Id;
   }
 
+  void SetDeliverySimulation(ISubject* simu) {
+	  simulation = simu;
+  }
+
+
+
+
  protected:
   picojson::object details;
   bool dynamic;
@@ -154,6 +161,9 @@ bool IsDynamic() const    {
 //	      Vector3D direction;
 		  std::vector<float> position;
 		    std::vector<float> direction;
+			ISubject* simulation;
+
+
 }; //close class 
 
 }  // namespace csci3081

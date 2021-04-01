@@ -11,7 +11,7 @@
 
 namespace csci3081 {
 
-	class Mover : private EntityBase {
+	class Mover : public EntityBase {
 
 	public:
 		Mover(const picojson::object& details_):EntityBase(details_) {
@@ -24,15 +24,9 @@ namespace csci3081 {
 
 	void OnIdle();
 		void OnMove();
-	    void SetDeliverySimulation(DeliverySimulation* simu) {
-	  	  simulation = simu;
-	    }
-
-
 	protected:
 			std::vector<std::vector<float>>* currentRout;
-		DeliverySimulation* simulation;	}; //close class 
-
+		}; //close the damn class 
 } //close namespace 
 
 #endif

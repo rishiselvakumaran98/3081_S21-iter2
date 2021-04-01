@@ -4,10 +4,11 @@
 #include <EntityProject/facade/delivery_system.h>
 #include "drone.h"
 #include "Package.h"
+#include "ISubject.h"
 
 namespace csci3081 {
 
-class DeliveryManager {
+class DeliveryManager : public ISubject  {
 public:
 	void schedule_mover(Drone* nextDrone, IEntity* package, IEntity* dest, const IGraph* graph_);
 	void update_movement(Drone* nextDrone, float dt);

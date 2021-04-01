@@ -17,7 +17,7 @@ namespace csci3081 {
 	/**
 	 * @brief class responsible for the generation of packages.
 	 */
-class Package : public EntityBase, public Mover  {
+class Package : public EntityBase {
 
 public:
 	/**
