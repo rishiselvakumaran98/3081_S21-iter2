@@ -10,6 +10,20 @@
 #include <EntityProject/facade/delivery_system.h>
 #include <vector>
 #include <string>
+#include "drone.h"
+#include "Package.h"
+#include "Vector3D.h"
+#include "Customer.h"
+#include "json_helper.h"
+#include "entity_base.h"
+#include "Vector2D.h"
+#include "CompositeFactory.h"
+#include "DroneFactory.h"
+#include "PackageFactory.h"
+#include "CustomerFactory.h"
+#include "RobotFactory.h"
+#include "IEntityFactory.h"
+#include "ISubject.h"
 
 namespace csci3081 {
 
@@ -84,8 +98,9 @@ class DeliverySimulation : public IDeliverySystem {
   dropping the package.
   */
   void ScheduleDelivery(IEntity* package, IEntity* dest);
-
+  /* 
   /** Observer functions will not be used in iteration1 */
+  void ActualScheduleDelivery();
   void AddObserver(IEntityObserver* observer);
 
   /** Observer functions will not be used in iteration1 */
@@ -117,11 +132,24 @@ class DeliverySimulation : public IDeliverySystem {
    */
   void RunScript(const picojson::array& script, IEntitySystem* system) const;
 
+  int NewId() {
+	  Id++;
+	  return Id;
+  }
  private:
   // You don't strictly need to use the following variable, but it is probably
   // the most straightforward way of storing the entities in the system.
   // Feel free to use it as is or change it.
   std::vector<IEntity*> entities_;
+  std::vector<IEntity*> packages_array;
+  std::vector<IEntity*> customer_array;
+  const IGraph* graph_;
+    CompositeFactory comp_fact;
+	int Id = -1;
+//	  DroneFactory dFact;
+//	    CustomerFactory cFact;
+//		  PackageFactory pFact;
+	ISubject isub;
 };
 
 }  // namespace csci3081

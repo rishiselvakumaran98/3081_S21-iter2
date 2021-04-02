@@ -1,11 +1,5 @@
 # Iteration One: Proof of Concept/Protoype -- Package Delivery System
 
-## Iteration 1 - VERSION 4, March 8th -- Relaxed unit testing requirements from "all public methods" to "all public methods which do not overly rely on external classes".
-
-## Iteration 1 - VERSION 3, March 4th -- Clarified the overall goal of the simulation in the introduction. 
-
-## Iteration 1 - VERSION 2, March 3rd -- Changed IEntity.h to Entity.h 
-
 ## Iteration 1 - VERSION 1, February 19th  - **NOTE, THE REQUIREMENTS IN THIS DOCUMENT ARE SUBJECT TO CHANGE. THERE WILL BE A CANVAS ANNOUNCEMENT WHEN THERE IS A CHANGE TO THIS DOCUMENT.**<hr>
 
 | Date | Item | Description of Verification and Validation of Deliverable(s) |
@@ -16,7 +10,7 @@
 
 ## Project Introduction
 
-For this project you will be creating a package delivery simulation. Amazon, FedEx, UPS, and other delivery services companies are developing automated delivery systems using drones, robots, and self-driving trucks. For this iteration of the project you will be creating just the drone package delivery system. **Your overall goal is for the drone to pick up the package and deliver it to the customer.** In this process you will have to create the following classes: Customer, Drone, Package, Vector3D, Vector2D, and a Battery class. To assist you in completing your solution we have provided you support code so the simulation runs in a web browser, firefox, chrome, etc. 
+For this project you will be creating a package delivery simulation. Amazon, FedEx, UPS, and other delivery services companies are developing automated delivery systems using drones, robots, and self-driving trucks. For this iteration of the project you will be creating just the drone package delivery system. In this process you will have to create the following classes: Customer, Drone, Package, Vector3D, Vector2D, and a Battery class. To assist you in completing your solution we have provided you support code so the simulation runs in a web browser, firefox, chrome, etc. 
 
 As part of the solution you will be using the facade design pattern (https://www.dofactory.com/net/facade-design-pattern) where the complexity of the system is hidden behind an interface. We will be giving you a Doxygen generated html file containing the documentation of all the classes being implemented behind the facade. **Do not modify the class IDeliverySystem or IEntity**
 
@@ -46,7 +40,6 @@ For this iteration you will be submitting the following deliverables  based upon
 
 5. Correct and update the first UML diagram you delivered to include changes to your code including your factory class(es) and their relationships to the classes that already existed in the simulation. 
 
-***6. The drone delivers a package to the customer.***
 
 ## Deliverables and Submission Process
 
@@ -78,9 +71,7 @@ In this iteration, you do the following development including:
 
 Teaching staff (Undergraduate TA's, Graduate TA's, and Instructors)  will also be working diligently to provide the structure and support for development, testing, and documentation. Automation in unit testing, style compliance, in-house github testing, and documentation will make this an easier process, however it means that you will have to develop within the constraints of these systems. **Often there is a learning curve and a lot of systems trouble-shooting to get it all working, so start early!**
 
-In the first iteration, you will be adding classes to our support code to enhance the simulation by designing and implementing the items listed above. Since this a proof of concept, **your simulation should use a single drone to deliver a single package to a customer.** The simulation is using three.js to create a 3D model of the University of Minnesota campus. Later we will be adding more scenes, drones, packages, etc. Therefore your solution to iteration one should be robust. **The drone has to detect the package, pick up the package, and deliver it to the customer. Once the package is delivered it should be removed from the simulation.** 
-
-Iterations 2 and 3 will include more changes, enhancements/extensions, and put the core functionality to greater use. 
+In the first iteration, you will be adding classes to our support code to enhance the simulation to by designing and implementing the items listed above. Since this a proof of concept, a single drone to deliver a single package to a customer. The simulation is using three.js to create a 3D model of the University of Minnesota campus. Later we will be adding more scenes, drones, packages, etc. Therefore your solution to iteration one should be robust. The drone has to detect the package, pick up the package, and deliver it to the customer. Once the package is delivered it should be removed from the simulation. Iterations 2 and 3 will include more changes, enhancements/extensions, and put the core functionality to greater use. 
 
 ### Functional Requirements
 
@@ -155,7 +146,7 @@ The drone should have the following functionality:
 
 1. Drones should be able to move from point A to point B at a constant speed.  You can use the following formula for calculating movement for the prototype:
 >Pseudocode: position = position + direction \*speed \*dt<br>
->Note: position and direction are stored in the IEntity class interface in Entity.h.
+>Note: position and direction are stored in the IEntity class interface in IEntity.h.
 
 2. When a package is scheduled for delivery, a drone should navigate to the package, pick up the package, and bring it to its destination.  The drone should follow the route from the source to the destination based on a beeline path or one of our default routes. The drone should never exceed the constant speed for this iteration.
 
@@ -244,7 +235,7 @@ Doxygen automatically generates documentation of class and code structure when y
 
 - fully documented classes and methods.
 
-- ***a discussion of the abstract factory vs. concrete factory vs. the composite factory.  The discussion should clearly describe each possible implementation (use a UML diagram), and discuss at least one pro and one con of implementing each of the alternatives. Include in your discussion the advantages and disadvantages of each type of factory.***
+- a discussion of the abstract factory vs. concrete factory vs. the composite factory.  The discussion should clearly describe each possible implementation (use a UML diagram), and discuss at least one pro and one con of implementing each of the alternatives. Include in your discussion the advantages and disadvantages of each type of factory.
 
 - The /html directory should *not* be in your repo in github.umn.edu - nor should your build directory, executable files, or object files.
 
@@ -306,7 +297,7 @@ TAs will inspect code for good naming conventions, good code organization, and i
 
 #### Preliminary Testing Submission ( 10% )  **UPDATE**
 
-In the week prior to the due date of the completed iteration, we will confirm that you have submitted work for Preliminary Turn-in #2. You must include tests for ~~all~~ all public methods *which do not overly rely on external classes* in the Drone, Package, Customer, Vector3D, Vector2D, and Battery classes. These should include tests for all Boolean valued functions and constructors to receive full points for the preliminary submission. There will be no manual inspection of the code at this point -- it is strictly a test for completed functionality and testing. We will ensure that your tests are effective using automatic means, similar to the Testing lab. There will be transparency in this process in that you will know what functionality will be tested, and you will see the results. Points earned at this stage are independent of the 40% points for the final submission.
+In the week prior to the due date of the completed iteration, we will confirm that you have submitted work for Preliminary Turn-in #2. You must include tests for **all** public methods in the Drone, Package, Customer, Vector3D, Vector2D, and Battery classes. These should include tests for all Boolean valued functions and constructors to receive full points for the preliminary submission. There will be no manual inspection of the code at this point -- it is strictly a test for completed functionality and testing. We will ensure that your tests are effective using automatic means, similar to the Testing lab. There will be transparency in this process in that you will know what functionality will be tested, and you will see the results. Points earned at this stage are independent of the 40% points for the final submission.
 
 Your google-test unit tests do not have to be google style compliant, and you do not need to follow the version control  development process specified in lab 10 to design and implement your tests. Your google tests should be in the **development branch** in your repository on github.umn.edu  by the end of the day Friday,  March 12. Remember to GIT ADD, GIT COMMIT and GIT PUSH your tests before the deadline!!!!
 
@@ -322,7 +313,7 @@ AFTER reading this document, if you have not done so, complete lab 9. Lab 10 wil
 
 <hr>
 
-## Important notes to remember
+##Important notes to remember
 
 >Your software is a reflection of your understanding of the requirements as specified in this document. If you do not understand any portion of the requirements or you think that the requirements are underspecified, it is your responsibility to get clarification from the instructor or a TA. Please read this document carefully and review it prior to turning in your iteration for assessment.
 
