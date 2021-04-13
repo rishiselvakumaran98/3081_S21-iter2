@@ -166,7 +166,10 @@ void Drone::OnMove() {
 void Drone::helper_Create_Strategy(const picojson::object details) {
 	if (JsonHelper::GetString(details, "path") == "beeline"){
 		strategy = new Beeline();
-	} //close if
+	}
+	else if(JsonHelper::GetString(details, "path") == "parabolic"){
+		strategy = new Parabolic();
+	}
 }//close helper
 
 }//close namespace 

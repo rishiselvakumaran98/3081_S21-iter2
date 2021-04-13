@@ -16,6 +16,8 @@
 #include "Battery.h"
 #include "IStrategy.h"
 #include "Beeline.h"
+#include "Parabolic.h"
+
 namespace csci3081 {
    /*******************************************************************************
     * Class Definitions
