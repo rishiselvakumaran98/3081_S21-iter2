@@ -38,6 +38,7 @@ class Drone : public csci3081::EntityBase {
 		 speed = JsonHelper::GetDouble(details_, "speed");
 		 has_picked_up = false;
 		 distance_traveled = 0;
+		 helper_Create_Strategy(details);
 	 }
 	 
 
@@ -54,6 +55,7 @@ class Drone : public csci3081::EntityBase {
 		 		 package_currently_delivering = nullptr;
 		 has_picked_up = false;
 distance_traveled = 0;
+		 helper_Create_Strategy(details);
 	 }//close constructor 
 
 	 /**
@@ -69,6 +71,7 @@ distance_traveled = 0;
 		 		 package_currently_delivering = nullptr;
 				 has_picked_up = false;
 distance_traveled = 0;
+		 helper_Create_Strategy(details);
 	 }
 
 	 /**
@@ -173,6 +176,9 @@ distance_traveled = 0;
 	void OnIdle();
 	
 	void OnMove();
+
+
+	void helper_Create_Strategy(const picojson::object details);
 private:
 	bool has_picked_up;
 	std::vector<std::vector<float>>* currentRout;
@@ -184,7 +190,7 @@ private:
 	std::vector<std::vector<float>>drone_to_pack;
 	std::vector<std::vector<float>>pack_to_customer;
 	Package* package_currently_delivering;
-	IStrategy* strategy = new Beeline;
+	IStrategy* strategy;
 }; //end of drone class
 
 }

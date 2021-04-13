@@ -87,18 +87,19 @@ void Drone::Update_Package() {
 
 void Drone::Scheduled_drone(IEntity* package, IEntity* dest, const IGraph* graph_) {
 	if (GetPackage() == nullptr) {
-		if (JsonHelper::GetString(details, "path") == "beeline"){
-			Beeline *bee_line;
-			bee_line = dynamic_cast<Beeline*>(strategy);
-			SetDroneToPack(bee_line->GetPath(GetPosition(),  package->GetPosition()));
-			SetPackage(dynamic_cast<Package*>(package));
+//		
+//			Beeline *bee_line;
+//			bee_line = dynamic_cast<Beeline*>(strategy);
+					SetDroneToPack(strategy->GetPath(GetPosition(),  package->GetPosition()));
+								SetPackage(dynamic_cast<Package*>(package));
 			SetCurrRout("pack");
-			SetPackToCustomer ( bee_line->GetPath(package->GetPosition(), dest->GetPosition() ));
+			SetPackToCustomer ( strategy->GetPath(package->GetPosition(), dest->GetPosition() ));
 			Package* pack = dynamic_cast<Package*>(package);
 			pack->SetCustomer(dynamic_cast<Customer*>(dest));
 			package_currently_delivering->OnSchedule();
 			OnMove();
 		}
+		/*
 		else{
 			SetDroneToPack( graph_->GetPath(GetPosition(), package->GetPosition() ) );
 			SetPackage(dynamic_cast<Package*>(package));
@@ -109,7 +110,8 @@ void Drone::Scheduled_drone(IEntity* package, IEntity* dest, const IGraph* graph
 			package_currently_delivering->OnSchedule();
 			OnMove();
 		}
-	} // close  if
+*/
+		//} // close  if
 }
 
 void Drone::update_drone_movement(float dt) {
@@ -160,4 +162,11 @@ void Drone::OnMove() {
 	const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
 	entity_sub->OnEvent(val, *this);
 }
+
+void Drone::helper_Create_Strategy(const picojson::object details) {
+	if (JsonHelper::GetString(details, "path") == "beeline"){
+		strategy = new Beeline();
+	} //close if
+}//close helper
+
 }//close namespace 
