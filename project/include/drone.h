@@ -14,7 +14,8 @@
 #include "Vector3D.h"
 #include "Vector2D.h"
 #include "Battery.h"
-
+#include "IStrategy.h"
+#include "Beeline.h"
 namespace csci3081 {
    /*******************************************************************************
     * Class Definitions
@@ -183,6 +184,7 @@ private:
 	std::vector<std::vector<float>>drone_to_pack;
 	std::vector<std::vector<float>>pack_to_customer;
 	Package* package_currently_delivering;
+	IStrategy* strategy = new Beeline;
 }; //end of drone class
 
 }

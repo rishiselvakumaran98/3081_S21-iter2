@@ -1,5 +1,5 @@
 #include "drone.h"
-
+#include "Beeline.h"
 namespace csci3081 {
 
 
@@ -87,15 +87,28 @@ void Drone::Update_Package() {
 
 void Drone::Scheduled_drone(IEntity* package, IEntity* dest, const IGraph* graph_) {
 	if (GetPackage() == nullptr) {
-
-		SetDroneToPack( graph_->GetPath(GetPosition(), package->GetPosition() ) );
-		SetPackage(dynamic_cast<Package*>(package));
-		SetCurrRout("pack");
-		SetPackToCustomer ( graph_->GetPath(package->GetPosition(), dest->GetPosition() ));
-		Package* pack = dynamic_cast<Package*>(package);
-		pack->SetCustomer(dynamic_cast<Customer*>(dest));
-		package_currently_delivering->OnSchedule();
-				OnMove();
+		if (JsonHelper::GetString(details, "path") == "beeline"){
+			Beeline *bee_line;
+			bee_line = dynamic_cast<Beeline*>(strategy);
+			SetDroneToPack(bee_line->GetPath(GetPosition(),  package->GetPosition()));
+			SetPackage(dynamic_cast<Package*>(package));
+			SetCurrRout("pack");
+			SetPackToCustomer ( bee_line->GetPath(package->GetPosition(), dest->GetPosition() ));
+			Package* pack = dynamic_cast<Package*>(package);
+			pack->SetCustomer(dynamic_cast<Customer*>(dest));
+			package_currently_delivering->OnSchedule();
+			OnMove();
+		}
+		else{
+			SetDroneToPack( graph_->GetPath(GetPosition(), package->GetPosition() ) );
+			SetPackage(dynamic_cast<Package*>(package));
+			SetCurrRout("pack");
+			SetPackToCustomer ( graph_->GetPath(package->GetPosition(), dest->GetPosition() ));
+			Package* pack = dynamic_cast<Package*>(package);
+			pack->SetCustomer(dynamic_cast<Customer*>(dest));
+			package_currently_delivering->OnSchedule();
+			OnMove();
+		}
 	} // close  if
 }
 
