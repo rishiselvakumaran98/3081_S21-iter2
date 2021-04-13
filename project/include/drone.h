@@ -17,7 +17,7 @@
 #include "IStrategy.h"
 #include "Beeline.h"
 #include "Parabolic.h"
-
+#include "Smart.h"
 namespace csci3081 {
    /*******************************************************************************
     * Class Definitions
@@ -179,6 +179,11 @@ distance_traveled = 0;
 	
 	void OnMove();
 
+	~Drone () {
+		delete strategy;
+	}
+
+	
 
 	void helper_Create_Strategy(const picojson::object details);
 private:

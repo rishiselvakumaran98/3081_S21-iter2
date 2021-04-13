@@ -87,7 +87,7 @@ void Drone::Update_Package() {
 
 void Drone::Scheduled_drone(IEntity* package, IEntity* dest, const IGraph* graph_) {
 	if (GetPackage() == nullptr) {
-//		
+		strategy->SetGraph(graph_);
 //			Beeline *bee_line;
 //			bee_line = dynamic_cast<Beeline*>(strategy);
 					SetDroneToPack(strategy->GetPath(GetPosition(),  package->GetPosition()));
@@ -170,6 +170,10 @@ void Drone::helper_Create_Strategy(const picojson::object details) {
 	else if(JsonHelper::GetString(details, "path") == "parabolic"){
 		strategy = new Parabolic();
 	}
+	else if(JsonHelper::GetString(details, "path") == "smart"){
+		strategy = new Smart();
+	}
+
 }//close helper
 
 }//close namespace 
