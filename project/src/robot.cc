@@ -6,7 +6,7 @@ namespace csci3081 {
 void Robot::Pick_order() {
 	package_currently_delivering->OnPickUp();	currentIndex = 0;
 	has_picked_up = true;
-	currentRout = &pack_to_customer;
+	currentRout = pack_to_customer;
 	has_delivered_pack = false;
 }//end of function
 
@@ -26,11 +26,11 @@ void Robot::Drop_order() {
 // }
 
 Vector3D  Robot::GetTargetPosition() {
-	return Vector3D ( currentRout->at(currentIndex));
+	return Vector3D ( currentRout.at(currentIndex));
 }//close function
 
 bool Robot::IncrTarget() {
-	if (currentIndex+1 == currentRout->size()) {
+	if (currentIndex+1 == currentRout.size()) {
 		return true;
 	} //
 	currentIndex +=1;
@@ -77,10 +77,10 @@ bool Robot::has_picked_up_getter() {
 
 void Robot::SetCurrRout(std::string rout) {
 	if (rout == "pack") {
-	currentRout = &Robot_to_pack;
+	currentRout = Robot_to_pack;
 }
 else if (rout == "customer") {
-	currentRout = &pack_to_customer;
+	currentRout = pack_to_customer;
 }
 }
 
@@ -154,7 +154,7 @@ void Robot::OnMove() {
 	picojson::object obj = JsonHelper::CreateJsonObject();
 	JsonHelper::AddStringToJsonObject(obj, "type", "notify");
 	JsonHelper::AddStringToJsonObject(obj, "value", "moving");
-	JsonHelper::AddStdVectorVectorFloatToJsonObject(obj, "path", *currentRout);
+	JsonHelper::AddStdVectorVectorFloatToJsonObject(obj, "path", currentRout);
 	const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
 	entity_sub->OnEvent(val, *this);
 }

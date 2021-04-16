@@ -62,10 +62,10 @@ void DeliverySimulation::ActualScheduleDelivery(){
 			bool pass_statement = nextDrone->GetPackage() == nullptr 
 				&& nextDrone->DroneAlive()
 				&& (packages_array[0]->GetPosition()[1] != -1000 && packages_array[0]->GetPosition()[1] != 264);
-			 
+			//  std::cout << "package_pos: " << packages_array[0]->GetPosition()[1] << std::endl;
 			if (pass_statement){
 				nextDrone->Scheduled_drone(packages_array[0], customer_array[0], graph_);
-				std::cout << "size of package array from schedule_drone: " << packages_array.size() << std::endl;
+				// std::cout << "size of package array from schedule_drone: " << packages_array.size() << std::endl;
 				packages_array.erase(std::remove(packages_array.begin(), packages_array.end(), packages_array[0]), packages_array.end());
 				customer_array.erase(std::remove(customer_array.begin(), customer_array.end(), customer_array[0]), customer_array.end());
 			}

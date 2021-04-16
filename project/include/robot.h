@@ -165,7 +165,7 @@ distance_traveled = 0;
  /**
   * @brief this function returns a pointer to the vector of vector floats that contain the current rout of the Robot
   */
-	std::vector<std::vector<float>>* GetCurRout() { return currentRout ; }
+	std::vector<std::vector<float>>& GetCurRout() { return currentRout ; }
 
 	/**
 	 * @brief getter for the distance traveled of a Robot in float format
@@ -192,7 +192,7 @@ distance_traveled = 0;
 
 private:
 	bool has_picked_up;
-	std::vector<std::vector<float>>* currentRout;
+	std::vector<std::vector<float>> currentRout;
 	int currentIndex = 0;
 	Battery* power_source;
 	float speed;

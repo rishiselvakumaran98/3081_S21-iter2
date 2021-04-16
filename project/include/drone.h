@@ -47,6 +47,8 @@ class Drone : public csci3081::EntityBase {
 			battery_capacity = 10000;
 		 power_source = new Battery(battery_capacity, "xc");
 		 has_delivered_pack = false;
+		 if (!JsonHelper::ContainsKey(details_, "path"))
+		 	JsonHelper::AddStringToJsonObject(details, "path", "smart");
 		 helper_Create_Strategy(details);
 	 }
 	 
@@ -64,7 +66,9 @@ class Drone : public csci3081::EntityBase {
 		 		 package_currently_delivering = nullptr;
 		 has_picked_up = false;
 distance_traveled = 0;
-		 helper_Create_Strategy(details);
+		if (!JsonHelper::ContainsKey(details_, "path"))
+		 	JsonHelper::AddStringToJsonObject(details, "path", "smart");
+		helper_Create_Strategy(details);
 	 }//close constructor 
 
 	 /**
@@ -172,7 +176,7 @@ distance_traveled = 0;
  /**
   * @brief this function returns a pointer to the vector of vector floats that contain the current rout of the drone
   */
-	std::vector<std::vector<float>>* GetCurRout() { return currentRout ; }
+	std::vector<std::vector<float>>& GetCurRout() { return currentRout ; }
 
 	/**
 	 * @brief getter for the distance traveled of a drone in float format
@@ -208,7 +212,7 @@ distance_traveled = 0;
 	void helper_Create_Strategy(const picojson::object details);
 private:
 	bool has_picked_up;
-	std::vector<std::vector<float>>* currentRout;
+	std::vector<std::vector<float>> currentRout;
 	int currentIndex = 0;
 	Battery* power_source;
 	float speed;
