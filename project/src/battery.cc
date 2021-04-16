@@ -15,16 +15,17 @@ int Battery::GetLevel() {
 	return battery_level;
 }
 
-void Battery::change_level(int delta) {
-	if (battery_level+delta <= 10000 && battery_level+delta >= 0) {
-		battery_level+=delta;
-	} //close if
-	else if (battery_level+delta > 10000) {
-		battery_level = 10000;
-	}//close max else if
-	else if( battery_level+delta  < 0) {
-		battery_level = 0;
-	} //close minimum if
+void Battery::change_level(float delta) {
+	battery_level -= delta;
+	// if (battery_level+delta <= 10000 && battery_level+delta >= 0) {
+	// 	battery_level+=delta;
+	// } //close if
+	// else if (battery_level+delta > 10000) {
+	// 	battery_level = 10000;
+	// }//close max else if
+	// else if( battery_level+delta  < 0) {
+	// 	battery_level = 0;
+	// } //close minimum if
 }//end of function
 
 bool Battery::Is_charged() {

@@ -7,16 +7,23 @@ void Robot::Pick_order() {
 	package_currently_delivering->OnPickUp();	currentIndex = 0;
 	has_picked_up = true;
 	currentRout = &pack_to_customer;
+	has_delivered_pack = false;
 }//end of function
 
 void Robot::Drop_order() {
 	package_currently_delivering->OnDropOff();
 	has_picked_up = false;
-		package_currently_delivering->SetPosition(Vector3D(0, -1000, 0));
+	package_currently_delivering->SetPosition(Vector3D(0, -1000, 0));
+	// packages_delivered.insert(packages_delivered.begin(), package_currently_delivering);
 	package_currently_delivering = nullptr;
 	currentIndex = 0;
 	distance_traveled = 0;
+	has_delivered_pack = true;
 }//close function 
+
+// vector<Package*> Robot::GetDeliveredPackageArray(){
+// 	return packages_delivered;
+// }
 
 Vector3D  Robot::GetTargetPosition() {
 	return Vector3D ( currentRout->at(currentIndex));
@@ -37,7 +44,12 @@ Package* Robot::GetPackage() {
 void Robot::SetPackage(Package* pack) {
 	package_currently_delivering = pack;
 }
-
+bool Robot::RobotAlive(){
+	return power_source->GetLevel() > 0 ? true : false;
+}
+bool Robot::Has_delivered_pack(){
+	return has_delivered_pack;
+}
 void Robot::SetRobotToPack(std::vector<std::vector<float>> v) {
 	Robot_to_pack = v;
 }
@@ -74,12 +86,9 @@ else if (rout == "customer") {
 
 void Robot::Update_Package() {
 	Vector3D initial_position = Vector3D (package_currently_delivering->GetPosition());
-	// std::cout << "initial package position" << initial_position.ToString() << std::endl;
 	if (has_picked_up == true) {
-//		std::cout << "package flying around!!!!" << std::endl;
 		package_currently_delivering->SetPosition(Vector3D (this->GetPosition() ));
 		Vector3D temp = Vector3D (package_currently_delivering->GetPosition());
-		std::cout << "package position is: " << temp.ToString() << std::endl;
 	}
 }
 
@@ -116,12 +125,13 @@ void Robot::update_Robot_movement(float dt) {
 			Vector3D v = GetTargetPosition()-GetPosition();
 			v.Normalize();
 			v = v*dt*GetSpeed();
+			power_source->change_level(dt);
 			if (v.Magnitude() > ( Vector3D (GetPosition())- GetTargetPosition() ).Magnitude() ) {
 				SetPosition(GetTargetPosition());
 			}//close if for overshooting the target 
 			else {						
 				Vector3D positionToMove = Vector3D ( GetPosition())+v;
-				std::cout << "Robot position" << positionToMove.ToString() << std::endl;
+				// std::cout << "Robot position" << positionToMove.ToString() << std::endl;
 				SetPosition(positionToMove);
 			} //close else for overshooting target
 			Update_Package();

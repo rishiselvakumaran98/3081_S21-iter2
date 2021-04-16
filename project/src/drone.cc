@@ -8,15 +8,17 @@ void Drone::Pick_order() {
 	currentIndex = 0;
 	has_picked_up = true;
 	currentRout = &pack_to_customer;
+	has_delivered_pack = false;
 }//end of function
 
 void Drone::Drop_order() {
 	package_currently_delivering->OnDropOff();
 	has_picked_up = false;
-		package_currently_delivering->SetPosition(Vector3D(0, -1000, 0));
+	package_currently_delivering->SetPosition(Vector3D(0, -1000, 0));
 	package_currently_delivering = nullptr;
 	currentIndex = 0;
 	distance_traveled = 0;
+	has_delivered_pack = true;
 }//close function 
 
 Vector3D  Drone::GetTargetPosition() {
@@ -37,6 +39,18 @@ Package* Drone::GetPackage() {
 
 void Drone::SetPackage(Package* pack) {
 	package_currently_delivering = pack;
+}
+bool Drone::DroneAlive(){
+	if (power_source->GetLevel() <= 0){
+		if (dead_count == 0) OnIdle(); // this is done to make sure that observer is notified once of the drone being dead
+		dead_count++;
+		has_delivered_pack = false;
+		return false;
+	}
+	return true;
+}
+bool Drone::Has_delivered_pack(){
+	return has_delivered_pack;
 }
 
 void Drone::SetDroneToPack(std::vector<std::vector<float>> v) {
@@ -75,13 +89,9 @@ else if (rout == "customer") {
 
 void Drone::Update_Package() {
 	Vector3D initial_position = Vector3D (package_currently_delivering->GetPosition());
-	// std::cout << "initial package position" << initial_position.ToString() << std::endl;
 	if (has_picked_up == true) {
-		// std::cout << "package flying around!!!!" << std::endl;
 		package_currently_delivering->SetPosition(Vector3D (this->GetPosition() ));
-		// std::cout << "drone: " << GetId() << "'s package is: " << JsonHelper::GetString(package_currently_delivering->GetDetails(), "name") << std::endl;
 		Vector3D temp = Vector3D (package_currently_delivering->GetPosition());
-		// std::cout << "drone: " << GetId() << " package position is: " << temp.ToString() << std::endl;
 	}
 }
 
@@ -118,6 +128,7 @@ void Drone::update_drone_movement(float dt) {
 			Vector3D v = GetTargetPosition()-GetPosition();
 			v.Normalize();
 			v = v*dt*GetSpeed();
+			power_source->change_level(dt);
 			if (v.Magnitude() > ( Vector3D (GetPosition() )- GetTargetPosition() ).Magnitude() ) {
 				this->SetPosition(GetTargetPosition());
 			}//close if for overshooting the target 
@@ -127,7 +138,6 @@ void Drone::update_drone_movement(float dt) {
 			} //close else for overshooting target
 			Update_Package();
 		} //close else of the within range if
-		
 	} //close get package check
 }//close function 
 
@@ -147,7 +157,6 @@ void Drone::OnMove() {
 	const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
 	entity_sub->OnEvent(val, *this);
 }
-
 void Drone::helper_Create_Strategy(const picojson::object details) {
 	if (JsonHelper::GetString(details, "path") == "beeline"){
 		strategy = new Beeline();

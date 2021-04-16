@@ -28,5 +28,13 @@ namespace csci3081 {
 		entity_sub->OnEvent(val, *this);
 	}
 
+	void Package::OnEmergencyDropOff() {
+		picojson::object obj = JsonHelper::CreateJsonObject();
+		JsonHelper::AddStringToJsonObject(obj, "type", "notify");
+		JsonHelper::AddStringToJsonObject(obj, "value", "dropped");
+		const picojson::value val= JsonHelper::ConvertPicojsonObjectToValue(obj);
+		entity_sub->OnEvent(val, *this);
+	}
+
 
 }//close namespace 

@@ -68,6 +68,7 @@ Customer* GetRecipient() {return person_to_receive;}
 void OnSchedule();
 void OnPickUp();
 void OnDropOff();
+void OnEmergencyDropOff();
 
 
 private:

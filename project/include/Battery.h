@@ -58,7 +58,7 @@ public:
 	 * @brief this function controls the battery level, changing it according to the value passed by the user
 	 * @param delta is the amount by how much the battery level should be changed
 	 */
-	void change_level(int delta);
+	void change_level(float delta);
 
 	/**
 	 * @brief returns the model of the Battery in string format

@@ -40,6 +40,13 @@ class Drone : public csci3081::EntityBase {
 		 speed = JsonHelper::GetDouble(details_, "speed");
 		 has_picked_up = false;
 		 distance_traveled = 0;
+		 float battery_capacity;
+		 if(JsonHelper::ContainsKey(details_, "battery_capacity"))
+			battery_capacity = JsonHelper::GetDouble(details_, "battery_capacity");
+		 else
+			battery_capacity = 10000;
+		 power_source = new Battery(battery_capacity, "xc");
+		 has_delivered_pack = false;
 		 helper_Create_Strategy(details);
 	 }
 	 
@@ -85,7 +92,6 @@ distance_traveled = 0;
    * @brief This function removes the package from the package list of the drone indicating that the package was dropped.
    */
   void Drop_order();
-
   /**
    * @brief this function checks if the drone is within a certain range for performing and action.
    * @param v Vector3D for the position to be checked if it is within the range 
@@ -113,6 +119,17 @@ distance_traveled = 0;
    * @param  pack a pointer to a package object to be assigned to the drone.
    */
   void SetPackage(Package* pack);
+/**
+   * @brief this function return true or false if the drone battery is below 0 and if so it signals the observer that the entity is dead
+   * @return  the current state of the drone based on its battery level
+   */
+  bool DroneAlive();
+
+  /**
+   * @brief this function return true or false if the drone has delivered package
+   * @return  the current state of the drone based on if the package delivered
+   */
+  bool Has_delivered_pack();
 
   /**
    * @brief this function set the vector Drone_to_pack with the rout that the drone will follow from its current point to the package that it will eventually pick up.
@@ -174,13 +191,16 @@ distance_traveled = 0;
 	 */
 	void update_drone_movement(float dt);
 
+	// vector<Package*> GetDeliveredPackageArray();
 
 	void OnIdle();
 	
 	void OnMove();
+	void IsDead();
 
 	~Drone () {
 		delete strategy;
+		delete power_source;
 	}
 
 	
@@ -193,11 +213,13 @@ private:
 	Battery* power_source;
 	float speed;
 	float distance_traveled;
-	std::vector<Package*> current_packages;
+	std::vector<Package*> packages_delivered;
 	std::vector<std::vector<float>>drone_to_pack;
 	std::vector<std::vector<float>>pack_to_customer;
 	Package* package_currently_delivering;
 	IStrategy* strategy;
+	bool has_delivered_pack;
+	int dead_count = 0;
 }; //end of drone class
 
 }

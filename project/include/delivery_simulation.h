@@ -101,6 +101,7 @@ class DeliverySimulation : public IDeliverySystem {
   /* 
   /** Observer functions will not be used in iteration1 */
   void ActualScheduleDelivery();
+  void RescheduleDelivery(Package *pack);
   void AddObserver(IEntityObserver* observer);
 
   /** Observer functions will not be used in iteration1 */
@@ -150,6 +151,9 @@ class DeliverySimulation : public IDeliverySystem {
 //	    CustomerFactory cFact;
 //		  PackageFactory pFact;
 	ISubject isub;
+  int schedule_count = 0;
+  int drone_rescheduleCount = 0;
+  int robot_rescheduleCount = 0;
 };
 
 }  // namespace csci3081
