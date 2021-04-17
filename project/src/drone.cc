@@ -21,6 +21,20 @@ void Drone::Drop_order() {
 	has_delivered_pack = true;
 }//close function 
 
+void Drone::Dead_Drop_order() {
+	if (package_currently_delivering != nullptr){
+		std::cout << "Dropping Package due to dead drone" << std::endl;
+		package_currently_delivering->OnEmergencyDropOff();
+	}
+		
+	has_picked_up = false;
+	// package_currently_delivering->SetPosition(Vector3D(0, -1000, 0));
+	package_currently_delivering = nullptr;
+	currentIndex = 0;
+	distance_traveled = 0;
+	// has_delivered_pack = true;
+}//close function
+
 Vector3D  Drone::GetTargetPosition() {
 	return Vector3D ( currentRout.at(currentIndex) );
 }//close function
@@ -42,8 +56,10 @@ void Drone::SetPackage(Package* pack) {
 }
 bool Drone::DroneAlive(){
 	if (power_source->GetLevel() <= 0){
-		if (dead_count == 0) OnIdle(); // this is done to make sure that observer is notified once of the drone being dead
-		dead_count++;
+		if (dead_count == 0){ 
+			// Dead_Drop_order();
+			OnIdle(); // this is done to make sure that observer is notified once of the drone being dead
+		}dead_count++;
 		has_delivered_pack = false;
 		return false;
 	}

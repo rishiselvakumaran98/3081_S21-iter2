@@ -198,7 +198,7 @@ distance_traveled = 0;
 	// vector<Package*> GetDeliveredPackageArray();
 
 	void OnIdle();
-	
+	void Dead_Drop_order();
 	void OnMove();
 	void IsDead();
 
