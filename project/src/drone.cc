@@ -22,17 +22,9 @@ void Drone::Drop_order() {
 }//close function 
 
 void Drone::Dead_Drop_order() {
-	if (package_currently_delivering != nullptr){
-		std::cout << "Dropping Package due to dead drone" << std::endl;
-		package_currently_delivering->OnEmergencyDropOff();
-	}
-		
-	has_picked_up = false;
-	// package_currently_delivering->SetPosition(Vector3D(0, -1000, 0));
-	package_currently_delivering = nullptr;
-	currentIndex = 0;
-	distance_traveled = 0;
-	// has_delivered_pack = true;
+	float curr_x = package_currently_delivering->GetPosition()[0];
+	float curr_z = package_currently_delivering->GetPosition()[2];
+	package_currently_delivering->SetPosition(Vector3D(curr_x, 0, curr_z));
 }//close function
 
 Vector3D  Drone::GetTargetPosition() {
