@@ -14,16 +14,6 @@ class BatteryTest : public ::testing::Test {
 
  protected:
   virtual void SetUp() {
-      
-/*      picojson::object object = JsonHelper::CreateJsonObject();
-      JsonHelper::AddStringToJsonObject(object, "type", "customer");
-      JsonHelper::AddStringToJsonObject(object, "name", "testCustomer");
-      JsonHelper::AddFloatToJsonObject(object, "radius", 100);
-      JsonHelper::AddFloatToJsonObject(object, "speed", 0);
-      JsonHelper::AddStdFloatVectorToJsonObject(object, "position", {5, 0, 0});
-      JsonHelper::AddStdFloatVectorToJsonObject(object, "direction", {100, 650, 0});
-	    customer = new Customer(object);
-	  */
 	  
 	  b1 = new Battery();
 	  
@@ -55,13 +45,13 @@ TEST_F(BatteryTest, get_level_tests) {
 
 TEST_F(BatteryTest, Change_level_tests) {
 b2->change_level(6000);
-	EXPECT_EQ(10000, b2->GetLevel());
+	EXPECT_EQ(-1000, b2->GetLevel());
 
 b2->change_level(-12000);
-	EXPECT_EQ(0, b2->GetLevel());
+	EXPECT_EQ(11000, b2->GetLevel());
 
 b1->change_level(-1000);
-	EXPECT_EQ(9000, b1->GetLevel());
+	EXPECT_EQ(11000, b1->GetLevel());
 }
 
 TEST_F(BatteryTest, constructor_test) {

@@ -49,7 +49,6 @@ void Drone::SetPackage(Package* pack) {
 bool Drone::DroneAlive(){
 	if (power_source->GetLevel() <= 0){
 		if (dead_count == 0){ 
-			// Dead_Drop_order();
 			OnIdle(); // this is done to make sure that observer is notified once of the drone being dead
 		}dead_count++;
 		has_delivered_pack = false;

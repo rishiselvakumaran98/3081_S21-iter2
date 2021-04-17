@@ -24,6 +24,7 @@ class DroneTest : public ::testing::Test {
       JsonHelper::AddFloatToJsonObject(object, "speed", 0);
       JsonHelper::AddStdFloatVectorToJsonObject(object, "position", {5, 0, 0});
       JsonHelper::AddStdFloatVectorToJsonObject(object, "direction", {100, 650, 0});
+	  JsonHelper::AddStringToJsonObject(object, "path", "smart");
 	    drone  = new Drone(object);
 		
 		float sp = 200.0;
@@ -253,7 +254,7 @@ TEST_F(DroneTest, default_constr_tests) {
 		drone->SetDroneToPack(v_);
 				drone->SetCurrRout("pack");
 				
-				std::vector<std::vector<float>> rout = *(drone->GetCurRout() );
+				std::vector<std::vector<float>> rout = drone->GetCurRout() ;
 				for (int i = 0; i < v_.size(); i++) {
 					ASSERT_EQ(Vector3D(v_[i]),Vector3D (rout[i]));
 				}
@@ -277,7 +278,7 @@ TEST_F(DroneTest, default_constr_tests) {
 		drone->SetPackToCustomer(v20_);
 				drone->SetCurrRout("customer");
 //				Vector3D curR = Vector3D (drone->GetCurrRout() );
-				rout2 = *(drone->GetCurRout() );
+				rout2 = drone->GetCurRout() ;
 				for (int i = 0; i < v20_.size(); i++) {
 					ASSERT_EQ(Vector3D (rout2[i]), Vector3D ( v20_[i] ));
 				}
