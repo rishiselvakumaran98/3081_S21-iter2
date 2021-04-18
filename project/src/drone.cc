@@ -24,7 +24,7 @@ void Drone::Drop_order() {
 void Drone::Dead_Drop_order() {
 	float curr_x = package_currently_delivering->GetPosition()[0];
 	float curr_z = package_currently_delivering->GetPosition()[2];
-	package_currently_delivering->SetPosition(Vector3D(curr_x, 0, curr_z));
+	package_currently_delivering->SetPosition(Vector3D(curr_x, 200, curr_z));
 }//close function
 
 Vector3D  Drone::GetTargetPosition() {

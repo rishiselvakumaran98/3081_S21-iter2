@@ -14,16 +14,17 @@ void Robot::Drop_order() {
 	package_currently_delivering->OnDropOff();
 	has_picked_up = false;
 	package_currently_delivering->SetPosition(Vector3D(0, -1000, 0));
-	// packages_delivered.insert(packages_delivered.begin(), package_currently_delivering);
 	package_currently_delivering = nullptr;
 	currentIndex = 0;
 	distance_traveled = 0;
 	has_delivered_pack = true;
 }//close function 
 
-// vector<Package*> Robot::GetDeliveredPackageArray(){
-// 	return packages_delivered;
-// }
+void Robot::Dead_Drop_order() {
+	float curr_x = package_currently_delivering->GetPosition()[0];
+	float curr_z = package_currently_delivering->GetPosition()[2];
+	package_currently_delivering->SetPosition(Vector3D(curr_x, 200, curr_z));
+}//close function
 
 Vector3D  Robot::GetTargetPosition() {
 	return Vector3D ( currentRout.at(currentIndex));

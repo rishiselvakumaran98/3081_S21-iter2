@@ -123,6 +123,8 @@ void DeliverySimulation::Update(float dt) {
 				nextDrone->update_drone_movement(dt);
 			}
 			else if (drone_rescheduleCount == 0){
+				// If the drone is carrying Package drop the package to the ground
+				if (nextDrone->has_picked_up_getter()) nextDrone->Dead_Drop_order();
 				RescheduleDelivery(nextDrone->GetPackage());
 				drone_rescheduleCount++;
 			} 
