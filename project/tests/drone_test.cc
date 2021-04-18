@@ -57,8 +57,12 @@ class DroneTest : public ::testing::Test {
  * Test Cases
  ******************************************************************************/
 TEST_F(DroneTest, default_constr_tests) {
-	
-				ASSERT_NE(nullptr,  drone);
+	ASSERT_NE(nullptr,  drone);
+	EXPECT_EQ(drone->Has_delivered_pack(), false);
+	EXPECT_EQ(drone->DroneAlive(),true);
+	EXPECT_EQ(droneConstr->Has_delivered_pack(), false);
+	EXPECT_EQ(droneConstr->DroneAlive(),true);
+	EXPECT_EQ(drone2->Has_delivered_pack(), false);
 	}//end function
 
 	TEST_F(DroneTest, pos_dir_constr_tests) {

@@ -54,8 +54,12 @@ class Robottest : public ::testing::Test {
  * Test Cases
  ******************************************************************************/
 TEST_F(Robottest, default_constr_tests) {
-	
-				ASSERT_NE(nullptr,  robot);
+	ASSERT_NE(nullptr,  robot);
+	EXPECT_EQ(robot->Has_delivered_pack(), false);
+	EXPECT_EQ(robot->RobotAlive(),true);
+	EXPECT_EQ(robutConstr->Has_delivered_pack(), false);
+	EXPECT_EQ(robutConstr->RobotAlive(),true);
+	EXPECT_EQ(robot2->Has_delivered_pack(), false);
 	}//end function
 
 	TEST_F(Robottest, pos_dir_constr_tests) {
