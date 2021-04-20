@@ -109,7 +109,7 @@ Then,
   which during runtime, the drone is initialized using the picojson object file which contains a "path" parameter that specifies which 
   path the drone should take in the simulation. This way the path is initialized in the drone dynamically during program execution.
 
-  For designing the Drone path we had to implent on the Beeline and Parabolic path. The beeline path consists of 4 points, 
+  For designing the Drone path we had to implement on the Beeline and Parabolic path. The beeline path consists of 4 points, 
 
   ADVANTAGE:
   The strategy pattern consists of a family of algorithms that can be defined as a class hierarchy and can be used interchangeably to 

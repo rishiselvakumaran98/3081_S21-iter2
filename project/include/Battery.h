@@ -70,7 +70,7 @@ public:
 	
 private:
 	int battery_level;
-			std::string model;
+	std::string model;
 	const float max_capacity =10000;
 };//end of class
 }//end of the namespace 
