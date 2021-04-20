@@ -43,7 +43,6 @@ namespace csci3081 {
 				float battery_capacity;
 				if(JsonHelper::ContainsKey(details_, "battery_capacity")){
 					battery_capacity = JsonHelper::GetDouble(details_, "battery_capacity");
-				// if (battery_capacity < 200) battery_capacity = 3000;
 				}
 				else
 					battery_capacity = 10000;

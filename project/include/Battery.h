@@ -51,7 +51,7 @@ namespace csci3081 {
 			/**
 			 * @brief returns the battery level
 			 */
-			int GetLevel();
+			float GetLevel();
 
 
 			/**
@@ -69,7 +69,7 @@ namespace csci3081 {
 			
 			
 		private:
-			int battery_level;
+			float battery_level;
 			std::string model;
 			const float max_capacity =10000;
 		};//end of class
