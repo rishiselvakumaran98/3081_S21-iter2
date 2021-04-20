@@ -97,6 +97,11 @@ Then,
 
   \subsection e Strategy Pattern for the Drone Paths
 
+  #### UML Diagram for the Strategy Pattern in the context of our project:
+    \htmlonly
+    <embed src="Istrategy_UML.png" width="50%" heigth="50%" href="Istrategy_UML.png"></embed>
+    \endhtmlonly
+
   CONTEXT:
   In the strategy pattern, we create a context object which helps to represent strategies and whose behavior 
   varies as per its strategy objects that are being created. The strategy object uses the context object as a reference 
@@ -179,6 +184,12 @@ Then,
     Lab 14 was quite useful to implement the parabolic path as it gave intuitive equations as well as a clear indication of where and how to implement them in the parabolic path. 
  
   \section cv Observer Pattern for drone movement
+
+    #### UML diagram of the observer pattern in the context of our project:
+    \htmlonly
+    <embed src="observer_uml.png" width="50%" heigth="50%" href="observer_uml.png"></embed>
+    \endhtmlonly
+
     The Observer Pattern is used to provide a one to many dependency between a specified subject 
     and any amount of observer objects. The aim of the observer pattern is for the subject to be able 
     to notify all observers about a change in state, so that the observers can then react to the state change 
