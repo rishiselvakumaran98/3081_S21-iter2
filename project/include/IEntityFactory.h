@@ -15,20 +15,13 @@
 
 namespace csci3081 {
 
-/*******************************************************************************
- * Class Definitions
- ******************************************************************************/
-/**
- * @brief The base class for factories to create  entities.
- *
- * This class can be used as the base for all factories  in the delivery system.
-*/
-	/*
-class IEntityFactory {
-public:
-virtual IEntity* CreateEntity(const picojson::object& object) = 0;
-
-}; //close class
+	/*******************************************************************************
+	 * Class Definitions
+	 ******************************************************************************/
+	/**
+	 * @brief The base class for factories to create entities.
+	 *
+	 * This class can be used as the base for all factories  in the delivery system.
 	*/
 }//close of the namespace 
 

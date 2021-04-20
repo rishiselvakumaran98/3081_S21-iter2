@@ -37,10 +37,11 @@ class Robot : public csci3081::EntityBase {
 		has_picked_up = false;
 		distance_traveled = 0;
 		float battery_capacity;
-		if(JsonHelper::ContainsKey(details_, "battery_capacity"))
-		battery_capacity = JsonHelper::GetDouble(details_, "battery_capacity");
-		else
-		battery_capacity = 10000;
+		if(JsonHelper::ContainsKey(details_, "battery_capacity")){
+			battery_capacity = JsonHelper::GetDouble(details_, "battery_capacity");
+			// if (battery_capacity < 200) battery_capacity = 3000;
+		}else
+			battery_capacity = 10000;
 		power_source = new Battery(battery_capacity, "xc");
 		has_delivered_pack = false;
 	}

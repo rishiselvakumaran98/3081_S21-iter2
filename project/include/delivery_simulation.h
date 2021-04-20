@@ -98,13 +98,28 @@ class DeliverySimulation : public IDeliverySystem {
   dropping the package.
   */
   void ScheduleDelivery(IEntity* package, IEntity* dest);
-  /* 
-  /** Observer functions will not be used in iteration1 */
+  /**
+   * @brief This function actually schedules the Drone and Robot entities with packages 
+   * and the respective customer destination that the drone should deliver to. The function
+   * uses a queue data structure to assign the avaible package and customer to the empty
+   * drones and customers. 
+   * 
+   */
   void ActualScheduleDelivery();
+  /**
+   * @brief This function reschedules the packages that is abandoned by the drone due to its low 
+   * battery status. The function takes in a Package *pack from the drone and it assigns it uses the 
+   * ActualScheduleDelivery() to schedule the package to the drone or robot that is alive and running
+   * 
+   */
   void RescheduleDelivery(Package *pack);
+  /**
+   * @brief This function adds the respective observer to the ISubject entity in the simulation
+   */
   void AddObserver(IEntityObserver* observer);
-
-  /** Observer functions will not be used in iteration1 */
+  /**
+   * @brief This function removes the respective observer to the ISubject entity in the simulation
+   */
   void RemoveObserver(IEntityObserver* observer);
 
   /**
@@ -132,7 +147,9 @@ class DeliverySimulation : public IDeliverySystem {
    *it is already implemented in the delivery_simulation.cc we have provided.
    */
   void RunScript(const picojson::array& script, IEntitySystem* system) const;
-
+  /**
+   * @brief This function increments the ID for the entities for the 
+   */
   int NewId() {
 	  Id++;
 	  return Id;

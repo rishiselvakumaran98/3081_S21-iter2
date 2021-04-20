@@ -24,7 +24,7 @@ void Drone::Drop_order() {
 void Drone::Dead_Drop_order() {
 	float curr_x = package_currently_delivering->GetPosition()[0];
 	float curr_z = package_currently_delivering->GetPosition()[2];
-	package_currently_delivering->SetPosition(Vector3D(curr_x, 200, curr_z));
+	package_currently_delivering->SetPosition(Vector3D(curr_x, 257, curr_z));
 }//close function
 
 Vector3D  Drone::GetTargetPosition() {
@@ -136,6 +136,7 @@ void Drone::update_drone_movement(float dt) {
 			v.Normalize();
 			v = v*dt*GetSpeed();
 			power_source->change_level(dt);
+			// std::cout << power_source->GetLevel() << std::endl;
 			if (v.Magnitude() > ( Vector3D (GetPosition() )- GetTargetPosition() ).Magnitude() ) {
 				this->SetPosition(GetTargetPosition());
 			}//close if for overshooting the target 

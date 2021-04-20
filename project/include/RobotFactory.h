@@ -15,21 +15,20 @@
 #include "robot.h"
 
 namespace csci3081 {
-
-/*******************************************************************************
- * Class Definitions
- ******************************************************************************/
-/**
- * @brief Robot factory. This class is responsible for the creation of Robots entity.
-*/
-class RobotFactory : public IEntityFactory {
-public:
+	/*******************************************************************************
+	 * Class Definitions
+	 ******************************************************************************/
 	/**
-	 * @brief override function from IEntityFactory to create Robots.
-	 * @param  object the picojson to be analysed and possibly made into a Robot.
-	 */
-	IEntity* CreateEntity(const picojson::object& object);
-}; //close class
+	 * @brief Robot factory. This class is responsible for the creation of Robots entity.
+	*/
+	class RobotFactory : public IEntityFactory {
+		public:
+			/**
+			 * @brief override function from IEntityFactory to create Robots.
+			 * @param  object the picojson to be analysed and possibly made into a Robot.
+			 */
+			IEntity* CreateEntity(const picojson::object& object);
+	}; //close class
 }//close of the namespace 
 
 #endif 
