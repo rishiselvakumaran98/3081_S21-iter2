@@ -1,7 +1,7 @@
 #include "Package.h"
 
 namespace csci3081 {
-
+	
 	void Package::OnSchedule() {
 		picojson::object obj = JsonHelper::CreateJsonObject();
 		JsonHelper::AddStringToJsonObject(obj, "type", "notify");

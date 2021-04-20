@@ -43,6 +43,7 @@ TEST_F(FactoryTest, DroneCreated) {
   JsonHelper::AddStringToJsonObject(obj, "name", "nam");
   JsonHelper::AddFloatToJsonObject(obj, "radius", 10.0);
 JsonHelper::AddFloatToJsonObject(obj, "speed", 100.0);
+JsonHelper::AddStringToJsonObject(obj, "path", "smart");
   IEntity* entity = system->CreateEntity(obj);
 
   // Checks that the returned entity is not NULL

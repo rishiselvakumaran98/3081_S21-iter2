@@ -17,18 +17,17 @@
 
 
 namespace csci3081 {
-/**
- * @brief The factory to create customers entities.
- */
-class CustomerFactory : public IEntityFactory  {
-public:
-/**
- * @brief Function to generate customers entities.
-	 * @param object picojson object from the simulation to make the entity 
- */
-	IEntity* CreateEntity(const picojson::object& object);
-
-}; //close class
+	/**
+	 * @brief The factory to create customers entities.
+	 */
+	class CustomerFactory : public IEntityFactory  {
+		public:
+			/**
+			* @brief Function to generate customers entities.
+			* @param object picojson object from the simulation to make the entity 
+			*/
+			IEntity* CreateEntity(const picojson::object& object);
+	}; //close class
 }//close of the namespace
 
 #endif 
