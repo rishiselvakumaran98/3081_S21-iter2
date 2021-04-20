@@ -6,63 +6,170 @@
 * Next, navigate to `project/docs` and run `doxygen Doxyfile`.
 
 
-* \section intro_sec Introduction
-This simulation is a prototype of an automated system that has a drone picking up a package, following an specific route and dropping the package to the customer that ordered it.
-The rout is gathered from the graph object that is provided by the facade, and feed to the update function in delivery_simulation.cc
-In order to start the simulation, the user must have docker pre installed.
-Assuming a correct installation of the docker system, the steps are as follow.
-./bin/build-env.sh
-from the root of the repox500 github repository.
-After this step the simulation is built.
-The second step is to start a docker environment, this could be achieved by going to the project folder and running
-./bin/run-env.sh
-then the user should make the project by using the prewritten makefile with the command (make -j)
-and finally to run the simulation inside the project folder∂:
-./bin/run.sh
-as soon as the simulation starts, the user should go to the preferable browser and type the address:
-http://127.0.0.1:8081/
-which will show the simulation.
-By selecting the different entities different actions are possible.
-Selecting the drone, starts the process.
-If the simulation runs correctly, the drone will fly to the package, pick it up and fly to the customer.
-In order to run the simulation again the user should ctrl+c on the terminal to kill the simulation, and run 
-./bin/run.sh again, then refreshing the browser will restart the process.
+* \section Introduction
+## Welcome to the CSCI 3081 Drone Simulation Project!
 
-* \section factories_sec A brief discussion on the idea of factories.
-The first important concept to be understood is when the use of a factory is an advantage over the traditional way of creating objects..
-If we are dealing with a very simple code, or if every element of the code is concentrated in only one place, using a factory may not be a good idea.
-It might be easier just to implement the creation of objects by the traditional way with constructors and if statements.
-However, if the code is a little more complex, or if we are implementing a code with various types of objects that are created in multiple places, a factory can really make the programmer's life easier and the code more flexible for future upgrades and fixes.
-Now let us understand a little more about the different types of factories that may be used in such a case.
+To build and run the project make sure to have the right environment.
+*****************************
+Some of the common environments to run the projects include Docker, Linux platforms, CSE Lab Machines or VOLE/VOLE 3D
 
-  *\subsection concrete_factory_sec Concrete Factory
-When we are dealing with code where the number of elements rarely varies, and their types are mostly fixed, using a concrete factory is a great design pattern.
-In this case, the concrete factory would simply generate objects from a certain number of classes depending on their types. The concrete factory is faster and easier to implement for a number of elements that do not vary by a lot than the abstract factory that would be necessary here. Also, the concrete factory deals quite well with types that do not vary a lot, since it gets its types from classes that are passed directly from classes to its createEnttity method.
-The issue with concrete factories rises when we need to deal with varying number of elements or types. Since the concrete factory createEntity function gets its types directly from the classes inherited by the concrete class, it does not have a lot of variability, making it a bad choice for dynamic codes and future upgrades.
+First open up a Terminal and cd into the `repo-selva053` directory,
+Then,
 
-\image html ./FactoryDiagramConcrete.PNG "Concrete Factory UML" width=600cm
+- Build the docker image
 
-*\subsection abstract_factory_sec Abstract Factory
-The abstract factory is a great option for ever varying codes where the number of elements is unknown and the types may change throughout the programming process.
-Its advantage is mostly due to the fact that it does reduce drastically the number of if statements that the programmer needs to type, therefore making it less probable that mistakes will be made and syntax errors generated. Also, abstract classes make it very easy for future upgrades  of the program. When compared with concrete factories, for example, they allow for huge flexibility, and when compared with the no factories implementation they allow for simple changes that will affect the entire code. This last advantage comes from the fact that abstract factories have an automatic handling of object creation by taking advantage of the concept of polymorphism of the pattern.
-The only issues with abstract factories rises from the ideas that they could be unnecessary in cases that we don't have changing types and number of elements, were the concrete factory is easier to be implemented. Also, since they deal with polymorphism if there is an error in one of the upper factories it may reflect in other classes. making the code more difficult to debug.
+~~~~~~~~~~~~~~{.sh}   
+    bin/build-env.sh
+~~~~~~~~~~~~~~
 
-\image html ./FactoryDiagramAbstract.png "Abstract Factory UML" width=700cm
+- Run docker image
 
-* \subsection composite_factory_sec Composite Factory
-The idea of composite factory rises from the concept of combining composite pattern with factories.
-Composite pattern is the design pattern in which various objects are combined into smaller groups of objects, hence the composite name.
-Composite factories are factories that are combined into groups and handled by a main factory.
-In the case of this simulation, for example, we had the main composite factory being responsible to first add the drones, packages and customer factories.
-Later those sub-factories would be the ones responsible for the creation of the entities of the simulation.
-This makes it very easy to add new entities by simply adding an extra simple class that has a single createEntity function and adding that to the composite factory.
-The composite factory serves as a middle layer as the sub-factories and the main interface factory that is hidden in the facade.
-The disadvantages of the composite factories are similar to the abstract factory. It is not necessary in simple codes, and because the elements are grouped together it may be harder to debug.
+~~~~~~~~~~~~~~
+    #Usage bin/run-env.sh <port - optional(default 8081)>
+    bin/run-env.sh
+~~~~~~~~~~~~~~
+    
+- Build project web server (inside docker image) NOTE: You won't be able to `cd` here yet because the project directory does not exist. If you were able to launch the above commands you should now be inside the docker image. You can exit it with CTRL+D now.
 
-\image html ./FactoryDiagramComposite.png "Composite Factory UML" width=800cm
+~~~~~~~~~~~~~~
+    # Inside docker image
+    cd /home/user/repo/project
+    make
+~~~~~~~~~~~~~~
+    
+- Run web server (inside docker image)
 
-* \subsection no_factory_sec No Factory
-Even though factories are a great addition to a design programming pattern, in some cases as we have seen above they are unnecessary. For example, when the code is very short, or we are creating a very small number of objects all concentrated in a single place, the best option would be to go with the general idea of having constructors and if statements since factories would not make a lot of sense.
-The issue happens when we want  to expand the code. Having no factories makes it really difficult to expand the number of entities or types to be created in an efficient manner, and so that is why factories are recommended in systems where the possibility of a large number of entities or types exist.
+~~~~~~~~~~~~~~
+    # MUST be within project/ directory inside docker image
+    cd /home/user/repo/project
+    ./bin/run.sh
+~~~~~~~~~~~~~~
+    
+- Open up Firefox and browse to http://127.0.0.1:8081/
+
+
+## Getting Started using SSH on CSE Lab machines
+
+- Initial Setup of remote web server (full copy)
+
+~~~~~~~~~~~~~~
+    #Example: ./project/bin/setup-server.sh dtorban 05
+    ./project/bin/setup-server.sh <username> <computer_number>
+~~~~~~~~~~~~~~
+
+- Run remote web server (only copies src directory)
+
+~~~~~~~~~~~~~~
+    #Example: ./project/bin/server.sh dtorban 05 8081
+    ./project/bin/server.sh <username> <computer_number> <port>
+~~~~~~~~~~~~~~
+
+    
+- Open up Firefox and browse to http://127.0.0.1:8081/
+
+## Getting Started with VOLE-3D or VOLE
+
+- Log on to [VOLE-3D or VOLE](https://vole.cse.umn.edu/) (VOLE is slower for graphics, but is great for tests, etc...)
+
+- Build project
+
+~~~~~~~~~~~~~~
+    cd /path/to/cloned/repository
+    cd project
+    make
+~~~~~~~~~~~~~~
+    
+ - Run project
+
+~~~~~~~~~~~~~~
+    # MUST be within project/ directory <scenes/<scene>.json - optional(default umn.json)>
+    ./bin/run.sh
+~~~~~~~~~~~~~~
+    
+ - Open up Firefox and browse to http://127.0.0.1:8081/ 
+
+
+
+* \section routes_sec Designing and Implementing the different routes
+
+  In the graphical simulation we implemented different routes for the drone entty using the Strategy Pattern. 
+
+* \subsection Strategy Pattern for the Drone Paths
+
+  CONTEXT:
+  In the strategy pattern, we create a context object which helps to represent strategies and whose behavior 
+  varies as per its strategy objects that are being created. The strategy object uses the context object as a reference 
+  while changing the executing algorithm. This phenomenon is possible as the drone acts as the context object in our project
+  that would change the respective algorithms based on the context of the simultaion. In the project, we have our IStrategy class 
+  that acts as the interface needed for Strategy objects to implement on. The IStrategy class consists of the pure abstract method 
+  GetPath() that is used by the strategy objects such as Parabolic, Beeline and Smart Paths to implement on the GetPath() method 
+  from the IStrategy class for generating 2D vectors of directions for the Drone to navigate around in the simulation.
+  Here we rely on composition instead of inheritance of objects for reusability and having more flexibility to add paths in the future for the drone. 
+  Instead of implementing a behavior, the Context delegates it to a Strategy. The IStrategy in this case would require changing behaviors, 
+  which during runtime, the drone is initialized using the picojson object file which contains a "path" parameter that specifies which 
+  path the drone should take in the simulation. This way the path is initialized in the drone dynamically during program execution.
+
+  For designing the Drone path we had to implent on the Beeline and Parabolic path. The beeline path consists of 4 points, 
+
+  ADVANTAGE:
+  The strategy pattern consists of a family of algorithms that can be defined as a class hierarchy and can be used interchangeably to 
+  alter application behavior without changing its architecture. By encapsulating the algorithm separately, new algorithms complying 
+  with the same interface can be easily introduced. The application can switch strategies at run-time. Strategy enables the clients 
+  to choose the required algorithm, without using a “switch” statement or a series of “if-else” statements. Data structures used for 
+  implementing the algorithm are completely encapsulated in Strategy classes. Therefore, the implementation of an algorithm can be changed 
+  without affecting the Context class.
+
+  DISADVANTAGE:
+  The application using the strategy pattern must be aware of all the strategies to select especially the right one for the right situation, 
+  Which could lead to possible runtime bugs if the particular strategy is not defined for the right situation. To fix this issue, a default strategy 
+  must be set which the entites could rely on when the particular strategies are not used. Context and the Strategy classes normally communicate 
+  through the interface specified by the abstract Strategy base class, which doesnt provide flexibility for starategies 
+  that might require different implementations. Strategy base class must expose interface for all the required behaviours, which some concrete 
+  Strategy classes might not implement. In most cases, the application configures the Context with the required Strategy object. 
+  Therefore, the application needs to create and maintain two objects in place of one.
+
+    
+
+ \subsection Observer Pattern for the Simulation
+ 
+  The Observer Pattern is used to provide a one to many dependency between a specified subject 
+  and any amount of observer objects. The aim of the observer pattern is for the subject to be able 
+  to notify all observers about a change in state, so that the observers can then react to the state change 
+  and execute their respective instructions.
+
+ ADVANTAGE:
+  The observer pattern is useful because it provides the ability for two objects to interact with each other 
+  with the least amount of information about the other object that allows them to interact. Since the vast majority 
+  of the information about the two communicating objects is withheld from each other, the developer is granted with the 
+  power of changing object attributes in the middle of a simulation/program without the changes affecting the 
+  communication between objects.
+
+ DISADVANTAGE:
+  A notable disadvantage of implementing the observer pattern is that it can cause memory leaks if not implemented carefully. 
+  If one of the observers is deleted from memory without being unregistered from the subject, it becomes a dangling pointer. 
+  Everytime the subject notifies the observers in the simulation, this unregistered observer will cause a segmentation fault.
+  The observer pattern should, therefore, be used when a program contains multiple objects that are directly dependent on the 
+  state of one object as it provides a neat and well tested design for the same.
+
+  CONTEXT: 
+  In our delivery simulation, we implemented the observer pattern for notifying the status of the 
+  
+* \section Group Member's Contribution:
+
+  Hamza: Beeline path, Google Tests for Beeline Path and Parabolic Path
+  
+  Lucas: Parabolic path, Strategy Pattern, Observer Pattern
+  Rishi: Battery class, Delivery rescheduling, Drone movements related to battery, dropping package
+
+  Shreyas: Multiple schedule relivery, Robot class, Robot movements related to battery
+    Trying to locate the data structure and integrate the queue into the delivery simulation to 
+    schedule packages to the empty drones and robots was a challenge, and took over 2 days. 
+
+
+
+
+
 
 */
+
+
