@@ -13,14 +13,13 @@
 namespace csci3081 {
 
 	class ISubject {
-	private:
-		std::vector<IEntityObserver*> observers_;
+		private:
+			std::vector<IEntityObserver*> observers_;
 
-	public:
-		void AddObserver(IEntityObserver* observer_to_be_added);
-		void RemoveObserver(IEntityObserver* observer_to_be_removed);
-		void OnEvent(const picojson::value& object, const IEntity& entity_);
-
+		public:
+			void AddObserver(IEntityObserver* observer_to_be_added);
+			void RemoveObserver(IEntityObserver* observer_to_be_removed);
+			void OnEvent(const picojson::value& object, const IEntity& entity_);
 	}; //close class.
 
 }//close namespace 

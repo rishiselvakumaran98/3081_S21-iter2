@@ -16,20 +16,20 @@
 
 namespace csci3081 {
 
-/*******************************************************************************
- * Class Definitions
- ******************************************************************************/
-/**
- * @brief Drone factory. This class is responsible for the creation of Drones entity.
-*/
-class DroneFactory : public IEntityFactory {
-public:
+	/*******************************************************************************
+	 * Class Definitions
+	 ******************************************************************************/
 	/**
-	 * @brief override function from IEntityFactory to create Drones.
-	 * @param  details_ the picojson to be analysed and possibly made into a drone.
-	 */
-	IEntity* CreateEntity(const picojson::object& object);
-}; //close class
+	 * @brief Drone factory. This class is responsible for the creation of Drones entity.
+	*/
+	class DroneFactory : public IEntityFactory {
+		public:
+			/**
+			 * @brief override function from IEntityFactory to create Drones.
+			 * @param  details_ the picojson to be analysed and possibly made into a drone.
+			 */
+			IEntity* CreateEntity(const picojson::object& object);
+	}; //close class
 }//close of the namespace 
 
 #endif 
