@@ -233,12 +233,13 @@ Then,
     #### Rishi: Project Manager
       Rishi managed the timelines for each feature implemented by the group, and made sure everyone was on track during the project.
       This includes setting up meetings with Hamza, Shreyas, and Lucas to plan the implementations of every new feature we tackled, 
-      as well as making sure that the implementations met the requirements set for the class by discussing them with TAs during office hours.
+      as well as making sure that the implementations met the requirements set for the class by discussing them with TAs during office hours. Rishi 
+      also kept track of the issues posted on Github with team members and actively checked status on those issues with team members on a regular basis.
       Rishi also designed the battery class, delivery rescheduling mechanism, and the new drone movements corresponding to the drone's battery level.
 
     #### Hamza: Scheduler
       Hamza helped to schedule the proper date and time for team meetings, and set up the discord channel for official group communication about the status of each feature implementation.
-      In addition, Hamza also designed the Unit and Functional testing for all features, as well as implementing the beeline path for the drone. 
+      In addition, Hamza also designed the Unit and Functional testing for all features of the classes, as well as implementing the beeline path for the drone. 
       Hamza also set up new branches in the GitHub repository for each feature that was to be implemented by the team. In addition, Hamza worked to make sure that the UML Diagram was error-free.
 
     #### Shreyas: Reporter
@@ -250,7 +251,7 @@ Then,
 
     Hamza would be tasked with implementing the Beeline path and testing functionality for all of the new features.
     Lucas would implement the route-specific features such as the parabolic path, strategy pattern, and observer pattern.
-    Rishi would be responsible for the battery class and making sure that the drone responded aptly to the battery levels (such as dropping packages when necessary), rescheduling the deliveries.
+    Rishi would be responsible for the battery class and making sure that the drone responded aptly to the changing battery levels (such as dropping packages when necessary), rescheduling the deliveries.
     Shreyas would implement the schedule delivery for multiple objects, the robot class, and ensuring that the robot reacted aptly to its battery levels. 
 
     ### March 26th: 
@@ -322,12 +323,16 @@ Then,
       equations and implementing them properly took about 1 hour. The hardest part about the parabolic path was defining the correct parameters, especially the doubles j and t.
       The offsets for the parabolic pattern was also an adjustment I had to make. 
       The Observer Pattern, on the other hand, led to a lot of segmentation faults in the simulation, primarily because of not unregistering observers
-      before deleting them. 
+      before deleting them. However after setting the proper values into the picojson object file and calling the OnEvent method on them
+      the observer pattern started to work smoothly as required for the simulation.
 
     #### Rishi: Battery class, Delivery rescheduling, Drone movements related to battery, dropping package
       The Battery class change level method was initially not configured properly initially to meet the 
       requirements for the battery depletion. To rework the method we just modified the current level of the battery 
-      to be subtracted with change dt everytime the battery method gets called.
+      to be subtracted with change dt everytime the battery method gets called. The battery level was checked within the drone entity using "Drone_Alive" method
+      that called on the Battery level of the drone and if the battery level is below zero it would return false. Based on the boolean
+      value returned from the "Drone_Alive" method the delivery simulation decides if it should update the drone movement or not. If the Drone battery
+      is below zero, the package held by the drone also gets dropped to a y-value of 257(ground level) where it rescheduled to the next available Drone or Robot entity.
 
     #### Shreyas: Multiple schedule relivery, Robot class, Robot movements related to battery, UML Diagram
       Trying to locate the data structure and integrate the queue into the delivery simulation to 
