@@ -334,7 +334,7 @@ Then,
       value returned from the "Drone_Alive" method the delivery simulation decides if it should update the drone movement or not. If the Drone battery
       is below zero, the package held by the drone also gets dropped to a y-value of 257(ground level) where it rescheduled to the next available Drone or Robot entity.
 
-    #### Shreyas: Multiple schedule relivery, Robot class, Robot movements related to battery, UML Diagram
+    #### Shreyas: Multiple schedule delivery, Robot class, Robot movements related to battery, UML Diagram
       Trying to locate the data structure and integrate the queue into the delivery simulation to 
       schedule packages to the empty drones and robots was a challenge, and took over 2 days. 
       The Robot class was a relatively straightforward implementation, but it was quite tedious and
